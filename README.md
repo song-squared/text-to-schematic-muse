@@ -34,7 +34,7 @@ This is the fourth open-source project from
 - **Emitters** — the same model emits `.dxf` (ezdxf, for AutoCAD) and `.qet`
   (for QElectroTech reports).
 
-![direct-on-line starter, v1](docs/direct-start-v1.png)
+![direct-on-line starter, v5](docs/direct-start-v5.png)
 
 > **Status**: v0.1 is a teaching preview — terminal data is cross-reviewed and
 > electrical correctness verified. It does not claim strict IEC/GB compliance
@@ -47,11 +47,11 @@ git clone https://github.com/song-squared/text-to-schematic-muse
 cd text-to-schematic-muse
 
 python3 verify_terminals.py   # 48 symbols / 119 terminals, all checks
-python3 direct_start.py        # generates direct_start_v1.drawio from the connection list
+python3 direct_start.py v5     # generates direct_start_v5.drawio from the connection list
 
 ./setup.sh check              # installs draw.io if missing (re-run after a VM reset)
 xvfb-run -a /opt/drawio/drawio --no-sandbox --export \
-  --format png --output direct_start_v1.png direct_start_v1.drawio
+  --format png --output 直接启动电路-v5.png direct_start_v5.drawio
 ```
 
 Core scripts depend only on the Python standard library; draw.io is needed

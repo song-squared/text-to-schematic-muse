@@ -1,12 +1,12 @@
   <!-- contactor_main_contact（自动生成） -->
-  <shape name="contactor_main_contact" aspect="variable" w="81" h="52" strokewidth="inherit">
+  <shape name="contactor_main_contact" aspect="variable" w="93" h="52" strokewidth="inherit">
     <connections>
-      <constraint x="0.17" y="0"/>
-      <constraint x="0.5" y="0"/>
-      <constraint x="0.83" y="0"/>
-      <constraint x="0.17" y="1"/>
-      <constraint x="0.5" y="1"/>
-      <constraint x="0.83" y="1"/>
+      <constraint x="0" y="0"/>
+      <constraint x="0.43" y="0"/>
+      <constraint x="0.86" y="0"/>
+      <constraint x="0" y="1"/>
+      <constraint x="0.43" y="1"/>
+      <constraint x="0.86" y="1"/>
     </connections>
     <foreground>
       <strokewidth width="2"/>
@@ -16,22 +16,22 @@
       <stroke/>
       <path><move x="0" y="36"/><line x="0" y="52"/></path>
       <stroke/>
-      <path><move x="34" y="0"/><line x="34" y="14"/></path>
+      <path><move x="40" y="0"/><line x="40" y="14"/></path>
       <stroke/>
-      <path><move x="34" y="14"/><line x="47" y="32"/></path>
+      <path><move x="40" y="14"/><line x="53" y="32"/></path>
       <stroke/>
-      <path><move x="34" y="36"/><line x="34" y="52"/></path>
+      <path><move x="40" y="36"/><line x="40" y="52"/></path>
       <stroke/>
-      <path><move x="68" y="0"/><line x="68" y="14"/></path>
+      <path><move x="80" y="0"/><line x="80" y="14"/></path>
       <stroke/>
-      <path><move x="68" y="14"/><line x="81" y="32"/></path>
+      <path><move x="80" y="14"/><line x="93" y="32"/></path>
       <stroke/>
-      <path><move x="68" y="36"/><line x="68" y="52"/></path>
+      <path><move x="80" y="36"/><line x="80" y="52"/></path>
       <stroke/>
       <strokewidth width="1"/>
       <dashed dashed="1" fixDash="1"/>
       <dashpattern pattern="8 6"/>
-      <path><move x="0" y="24"/><line x="68" y="24"/></path>
+      <path><move x="0" y="24"/><line x="80" y="24"/></path>
       <stroke/>
       <dashed dashed="0"/>
     </foreground>
@@ -419,5 +419,89 @@
       <fillstroke/>
       <ellipse x="0" y="24" w="8" h="8"/>
       <fillstroke/>
+    </foreground>
+  </shape>
+  <!-- nc_pushbutton（自动生成） -->
+  <shape name="nc_pushbutton" aspect="variable" w="30" h="52" strokewidth="inherit">
+    <connections>
+      <constraint x="0.5" y="0"/>
+      <constraint x="0.5" y="1"/>
+    </connections>
+    <foreground>
+      <strokewidth width="2"/>
+      <path><move x="15" y="0"/><line x="15" y="14"/></path>
+      <stroke/>
+      <path><move x="15" y="38"/><line x="15" y="52"/></path>
+      <stroke/>
+      <ellipse x="4" y="15" w="22" h="22"/>
+      <stroke/>
+      <path><move x="0" y="10"/><line x="30" y="10"/></path>
+      <stroke/>
+      <path><move x="2" y="18"/><line x="28" y="2"/></path>
+      <stroke/>
+    </foreground>
+  </shape>
+  <!-- circuit_breaker_3p（自动生成） -->
+  <shape name="circuit_breaker_3p" aspect="variable" w="98" h="62" strokewidth="inherit">
+    <connections>
+      <constraint x="0.09" y="0"/>
+      <constraint x="0.5" y="0"/>
+      <constraint x="0.91" y="0"/>
+      <constraint x="0.09" y="1"/>
+      <constraint x="0.5" y="1"/>
+      <constraint x="0.91" y="1"/>
+    </connections>
+    <foreground>
+      <strokewidth width="2"/>
+      <path><move x="9" y="0"/><line x="9" y="16"/></path>
+      <stroke/>
+      <path><move x="0" y="22"/><line x="18" y="40"/></path>
+      <stroke/>
+      <path><move x="0" y="40"/><line x="18" y="22"/></path>
+      <stroke/>
+      <path><move x="9" y="46"/><line x="9" y="62"/></path>
+      <stroke/>
+      <path><move x="49" y="0"/><line x="49" y="16"/></path>
+      <stroke/>
+      <path><move x="40" y="22"/><line x="58" y="40"/></path>
+      <stroke/>
+      <path><move x="40" y="40"/><line x="58" y="22"/></path>
+      <stroke/>
+      <path><move x="49" y="46"/><line x="49" y="62"/></path>
+      <stroke/>
+      <path><move x="89" y="0"/><line x="89" y="16"/></path>
+      <stroke/>
+      <path><move x="80" y="22"/><line x="98" y="40"/></path>
+      <stroke/>
+      <path><move x="80" y="40"/><line x="98" y="22"/></path>
+      <stroke/>
+      <path><move x="89" y="46"/><line x="89" y="62"/></path>
+      <stroke/>
+      <strokewidth width="1"/>
+      <dashed dashed="1" fixDash="1"/>
+      <dashpattern pattern="8 6"/>
+      <path><move x="9" y="31"/><line x="89" y="31"/></path>
+      <stroke/>
+      <dashed dashed="0"/>
+    </foreground>
+  </shape>
+  <!-- thermal_relay_3p（自动生成） -->
+  <shape name="thermal_relay_3p" aspect="variable" w="104" h="18" strokewidth="inherit">
+    <connections>
+      <constraint x="0.12" y="0"/>
+      <constraint x="0.5" y="0"/>
+      <constraint x="0.88" y="0"/>
+      <constraint x="0.12" y="1"/>
+      <constraint x="0.5" y="1"/>
+      <constraint x="0.88" y="1"/>
+    </connections>
+    <foreground>
+      <strokewidth width="2"/>
+      <rect x="0" y="0" w="24" h="18"/>
+      <stroke/>
+      <rect x="40" y="0" w="24" h="18"/>
+      <stroke/>
+      <rect x="80" y="0" w="24" h="18"/>
+      <stroke/>
     </foreground>
   </shape>

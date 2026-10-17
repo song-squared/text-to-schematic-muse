@@ -110,7 +110,7 @@ def shape_xml(name, rec, connections, aspect="variable"):
 # (name, 绘制调用, 连接点[(x,y)分数], aspect)
 SPECS = [
     ("contactor_main_contact", lambda c: S.contactor_main_contact(c, 100, 100),
-     [(0.17, 0), (0.5, 0), (0.83, 0), (0.17, 1), (0.5, 1), (0.83, 1)], "variable"),
+     [(0, 0), (0.43, 0), (0.86, 0), (0, 1), (0.43, 1), (0.86, 1)], "variable"),
     ("spdt_switch", lambda c: S.spdt_switch(c, 100, 100),
      [(0, 0), (1, 0), (0.5, 1)], "variable"),
     ("time_relay_coil", lambda c: S.time_relay_coil(c, 100, 100),
@@ -156,7 +156,7 @@ SPECS = [
     ("circuit_breaker_3p", lambda c: S.circuit_breaker_3p(c, 100, 100),
      [(0.09, 0), (0.5, 0), (0.91, 0), (0.09, 1), (0.5, 1), (0.91, 1)], "variable"),
     ("thermal_relay_3p", lambda c: S.thermal_relay_3p(c, 100, 100),
-     [(0.17, 0), (0.5, 0), (0.83, 0), (0.17, 1), (0.5, 1), (0.83, 1)], "variable"),
+     [(0.12, 0), (0.5, 0), (0.88, 0), (0.12, 1), (0.5, 1), (0.88, 1)], "variable"),
 ]
 
 

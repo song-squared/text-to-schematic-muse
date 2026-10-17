@@ -234,9 +234,17 @@ def render_png(path, bom_rows, wire_rows, term_rows, title="直接启动电路 �
     return path
 
 
-def main():
+def main(version="v1"):
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    from direct_start import build
+    if version == "v5":
+        from direct_start import build_v2 as build
+        tag = "v5"
+    elif version == "v3":
+        from direct_start import build_v2 as build
+        tag = "v3"
+    else:
+        from direct_start import build
+        tag = "v1"
     c = build()
     errs = c.validate()
     assert not errs, errs
@@ -244,11 +252,11 @@ def main():
     w = wire_list(c)
     t = terminal_list(c)
     ok, notes = check_consistency(c, b, w, t)
-    md = to_markdown("直接启动电路 · 报表 v1", c, b, w, t, ok, notes)
-    md_path = os.path.expanduser("~/workspace/your_files/直接启动电路-报表-v1.md")
+    md = to_markdown(f"直接启动电路 · 报表 {tag}", c, b, w, t, ok, notes)
+    md_path = os.path.expanduser(f"~/workspace/your_files/直接启动电路-报表-{tag}.md")
     open(md_path, "w", encoding="utf-8").write(md)
-    png_path = os.path.expanduser("~/workspace/your_files/直接启动电路-报表-v1.png")
-    render_png(png_path, b, w, t)
+    png_path = os.path.expanduser(f"~/workspace/your_files/直接启动电路-报表-{tag}.png")
+    render_png(png_path, b, w, t, title=f"直接启动电路 · 报表 {tag}")
     print("校验:", "全部通过" if ok else "有问题")
     for n in notes:
         print(" -", n)
@@ -257,4 +265,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1] if len(sys.argv) > 1 else "v1")

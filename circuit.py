@@ -46,6 +46,66 @@ class Instance:
     y: float
     remap: dict = field(default_factory=dict)   # {库端子编号: 显示编号}
     label_at: tuple = None  # 位号标注位置（绝对坐标），型号画在其下方
+    rotation: int = 0       # 绕锚点旋转角度（约定见 _rot），只允许 0/90/180/270
+
+
+def _rot(dx, dy, rotation):
+    """把相对锚点的偏移 (dx, dy) 按 rotation 旋转。
+    约定：90°:(dx,dy)->(dy,-dx)；180°:->(-dx,-dy)；270°:->(-dy,dx)。"""
+    r = rotation % 360
+    if r == 90:
+        return (dy, -dx)
+    if r == 180:
+        return (-dx, -dy)
+    if r == 270:
+        return (-dy, dx)
+    return (dx, dy)
+
+
+class RotCtx:
+    """旋转包装：几何调用绕锚点 (ax, ay) 旋转后再委托给底层 Ctx。
+    端子编号不变；文字只旋转位置、不旋转字形方向。"""
+
+    def __init__(self, base, ax, ay, rotation):
+        self._b = base
+        self._ax = ax
+        self._ay = ay
+        self._r = rotation % 360
+        self.WHITE = base.WHITE
+        self.RED = base.RED
+        self.FONT = getattr(base, "FONT", "")
+
+    def _p(self, x, y):
+        dx, dy = _rot(x - self._ax, y - self._ay, self._r)
+        return (self._ax + dx, self._ay + dy)
+
+    def _box(self, x, y, w, h):
+        pts = [self._p(x, y), self._p(x + w, y),
+               self._p(x, y + h), self._p(x + w, y + h)]
+        xs = [p[0] for p in pts]
+        ys = [p[1] for p in pts]
+        return (min(xs), min(ys), max(xs) - min(xs), max(ys) - min(ys))
+
+    def wire(self, x1, y1, x2, y2, **kw):
+        a, b = self._p(x1, y1), self._p(x2, y2)
+        return self._b.wire(a[0], a[1], b[0], b[1], **kw)
+
+    def dot(self, x, y, r=7, **kw):
+        c = self._p(x, y)
+        return self._b.dot(c[0], c[1], r, **kw)
+
+    def rect(self, x, y, w, h, **kw):
+        return self._b.rect(*self._box(x, y, w, h), **kw)
+
+    def ellipse(self, x, y, w, h, **kw):
+        return self._b.ellipse(*self._box(x, y, w, h), **kw)
+
+    def text(self, x, y, s, size=22, color=None, **kw):
+        c = self._p(x, y)
+        return self._b.text(c[0], c[1], s, size, color, **kw)
+
+    def library_shape(self, x, y, w, h, shape, **kw):
+        return self._b.library_shape(*self._box(x, y, w, h), shape, **kw)
 
 
 @dataclass
@@ -81,14 +141,15 @@ class Circuit:
         return inv.get(term, term)
 
     def terminal_pos(self, ref, term):
-        """端子绝对坐标。"""
+        """端子绝对坐标（含实例旋转；旋转后编号不变）。"""
         if _is_free(ref):
             return _free_xy(ref)
         inst = self.instances[ref]
         lib = self.resolve(inst, term)
         dx, dy = next((dx, dy) for n, dx, dy in TERMINALS[inst.symbol]
                       if n == lib)
-        return (inst.x + dx, inst.y + dy)
+        rdx, rdy = _rot(dx, dy, inst.rotation)
+        return (inst.x + rdx, inst.y + rdy)
 
     def validate(self):
         """返回错误列表；空列表 = 通过。"""
@@ -103,6 +164,9 @@ class Circuit:
                     errs.append("实例 %s: remap 键 %s 不在库端子中" % (iid, k))
             if len(set(inst.remap.values())) != len(inst.remap):
                 errs.append("实例 %s: remap 值重复，非双射" % iid)
+            if inst.rotation not in (0, 90, 180, 270):
+                errs.append("实例 %s: rotation 非法: %s（只允许 0/90/180/270）"
+                            % (iid, inst.rotation))
         for i, w in enumerate(self.wires):
             for ref, term, side in ((w.a_id, w.a_term, "a"),
                                     (w.b_id, w.b_term, "b")):
@@ -156,15 +220,17 @@ class Circuit:
         for x, y, s, size in extra_labels:
             ctx.text(x, y, s, size)
 
-        # 1) 实例几何
+        # 1) 实例几何（含旋转）
         for inst in self.instances.values():
-            getattr(S, inst.symbol)(ctx, inst.x, inst.y)
+            rctx = RotCtx(ctx, inst.x, inst.y, inst.rotation)
+            getattr(S, inst.symbol)(rctx, inst.x, inst.y)
 
         # 2) 导线
         term_pts = set()
         for inst in self.instances.values():
-            for num, dx, dy in TERMINALS[inst.symbol]:
-                term_pts.add((inst.x + dx, inst.y + dy))
+            for num, _, _ in TERMINALS[inst.symbol]:
+                x, y = self.terminal_pos(inst.id, num)
+                term_pts.add((round(x, 3), round(y, 3)))
         end_counter = Counter()
         for w in self.wires:
             a = self.terminal_pos(w.a_id, w.a_term)
@@ -175,8 +241,9 @@ class Circuit:
 
         # 3) 端子红点 + 分支点红点（三段以上交汇、且非端子处）
         for inst in self.instances.values():
-            for num, dx, dy in TERMINALS[inst.symbol]:
-                ctx.dot(inst.x + dx, inst.y + dy, r=7)
+            for num, _, _ in TERMINALS[inst.symbol]:
+                x, y = self.terminal_pos(inst.id, num)
+                ctx.dot(x, y, r=7)
         for (x, y), c in end_counter.items():
             if c >= 3 and (x, y) not in term_pts:
                 ctx.dot(x, y, r=7)
