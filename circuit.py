@@ -90,9 +90,9 @@ class RotCtx:
         a, b = self._p(x1, y1), self._p(x2, y2)
         return self._b.wire(a[0], a[1], b[0], b[1], **kw)
 
-    def dot(self, x, y, r=7, **kw):
+    def dot(self, x, y, r=7, color=None, **kw):
         c = self._p(x, y)
-        return self._b.dot(c[0], c[1], r, **kw)
+        return self._b.dot(c[0], c[1], r, color=color, **kw)
 
     def rect(self, x, y, w, h, **kw):
         return self._b.rect(*self._box(x, y, w, h), **kw)

@@ -79,6 +79,8 @@ def build():
 
 # ---------- 校验 ----------
 def main(version="v1"):
+    if version == "v6":
+        return main_v6()
     if version == "v5":
         return main_v5()
     if version == "v4":
@@ -150,9 +152,8 @@ def build_v2():
                             1100, 604, remap={"21": "95", "22": "96"},
                             label_at=(1008, 630)))
 
-    # ---------- 接线（22 根；三相垂线 x=240/280/320 笔直） ----------
-    # 顶部母线 + 三相引下
-    c.add_wire(Wire(P(200, 100), "", P(360, 100), ""))
+    # ---------- 接线（21 根；三相垂线 x=240/280/320 笔直） ----------
+    # 三相独立引下（L1/L2/L3 各自独立，顶部不再用横线短接）
     c.add_wire(Wire(P(240, 100), "", "QF", "1"))
     c.add_wire(Wire(P(280, 100), "", "QF", "3"))
     c.add_wire(Wire(P(320, 100), "", "QF", "5"))
@@ -323,6 +324,42 @@ def main_v5():
                       notes=notes, extra_labels=labels)
     out = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                        "direct_start_v5.drawio")
+    ET.ElementTree(mxfile).write(out, encoding="unicode")
+    print("written:", out)
+
+
+def main_v6():
+    """v6：v5 去掉顶部三相短接横线（W1），L1/L2/L3 独立引下；RotCtx.dot 修 color 透传。"""
+    c = build_v2()
+    errs = c.validate()
+    print("validate:", "通过" if not errs else "失败")
+    for e in errs:
+        print("  -", e)
+    print("实例数:", len(c.instances), "| 接线数:", len(c.wires))
+    if errs:
+        sys.exit(1)
+
+    W, H = 1600, 1000
+    labels = [
+        (240, 70, "L1", 20), (280, 70, "L2", 20), (320, 70, "L3", 20),
+        (90, 130, "主回路", 22),
+        (1100, 748, "N", 20),
+        (1150, 142, "Lc", 20),
+        (1300, 150, "控制回路", 22),
+        (1140, 248, "N1", 16), (1140, 434, "N2", 16),
+    ]
+    notes = [
+        "注：型号为示例占位；FR 辅助常闭触点标准编号 95-96，本图以 nc_contact 符号经端子重命名（21→95、22→96）实现",
+        "三极符号极距统一（QF/KM 主触点/FR 相邻极距 40px）；FR 为三个独立热元件（无外框），每相一个；KM 线圈旋转 270°（A1 上、A2 下）",
+        "电机为顶部接线盒式（U/V/W 一字排开 40px），FR→M 三线笔直垂线零折弯；L1/L2/L3 独立引下，顶部无横线",
+        "N1、N2 为导线分支点（红点）；SB2 与 KM 常开触点并联构成自锁",
+    ]
+    mxfile = c.render(W, H,
+                      title="直接启动电路（端到端验证 v6）",
+                      subtitle="9 实例 / 21 接线 · 极距统一 · FR 独立热元件 · 电机接线盒 · 型号为示例",
+                      notes=notes, extra_labels=labels)
+    out = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                       "direct_start_v6.drawio")
     ET.ElementTree(mxfile).write(out, encoding="unicode")
     print("written:", out)
 

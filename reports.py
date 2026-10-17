@@ -132,7 +132,8 @@ def _md_table(headers, rows):
 
 def to_markdown(title, circuit, bom_rows, wire_rows, term_rows, ok, notes):
     parts = ["# %s\n" % title,
-             "9 个实例 / 22 根接线，由电路模型确定性查表聚合生成，未经手工编辑。\n",
+             "%d 个实例 / %d 根接线，由电路模型确定性查表聚合生成，未经手工编辑。\n"
+             % (len(circuit.instances), len(wire_rows)),
              "## 一、BOM 表（按位号·符号·型号分组）\n",
              _md_table(["序号", "位号", "名称", "型号", "数量"],
                        bom_rows) + "\n",
@@ -202,7 +203,8 @@ def render_png(path, bom_rows, wire_rows, term_rows, title="直接启动电路 �
     img = Image.new("RGB", (W, total_h + 30), "#000000")
     d = ImageDraw.Draw(img)
     d.text((W // 2, 30), title, font=f_title, fill="#FF3333", anchor="ma")
-    d.text((W // 2, 82), "由电路模型查表聚合生成 · BOM 9 项 / 接线 22 条 / 端子 31 个",
+    d.text((W // 2, 82), "由电路模型查表聚合生成 · BOM %d 项 / 接线 %d 条 / 端子 %d 个"
+           % (len(bom_rows), len(wire_rows), len(term_rows)),
            font=f_cell, fill="#BBBBBB", anchor="ma")
 
     for tname, headers, rows, widths, y0 in plan:
@@ -236,7 +238,10 @@ def render_png(path, bom_rows, wire_rows, term_rows, title="直接启动电路 �
 
 def main(version="v1"):
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    if version == "v5":
+    if version == "v6":
+        from direct_start import build_v2 as build
+        tag = "v6"
+    elif version == "v5":
         from direct_start import build_v2 as build
         tag = "v5"
     elif version == "v3":
