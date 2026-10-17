@@ -29,6 +29,10 @@ This is the fourth open-source project from
 - **First end-to-end proof** — a direct-on-line motor starter (9 instances,
   22 connections), generated from its connection list and electrically
   verified:
+- **Reports** — BOM, wire list, and terminal list generated from the model
+  by deterministic lookup (`reports.py`).
+- **Emitters** — the same model emits `.dxf` (ezdxf, for AutoCAD) and `.qet`
+  (for QElectroTech reports).
 
 ![direct-on-line starter, v1](docs/direct-start-v1.png)
 
@@ -60,8 +64,8 @@ only for PNG export.
 | 1 | Terminal declarations for every symbol | ✅ Done |
 | 2 | Instantiation: symbol + device tag + part number | ✅ Done |
 | 3 | Wires as connections: terminal-to-terminal logic | ✅ Done |
-| 4 | Reports: BOM, wire list, terminal list, generated from the model | ⬜ Next |
-| 5 | Emitters: `.dxf` (ezdxf) for AutoCAD, `.qet` for QElectroTech reports | ⬜ Planned |
+| 4 | Reports: BOM, wire list, terminal list, generated from the model | ✅ Done |
+| 5 | Emitters: `.dxf` (ezdxf) for AutoCAD, `.qet` for QElectroTech reports | ✅ Done |
 
 ## 🧭 Architecture
 
