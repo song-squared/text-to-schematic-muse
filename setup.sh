@@ -15,6 +15,7 @@ MODE="${1:-install}"
 need_drawio() { [ ! -x "/opt/drawio/drawio" ]; }
 need_xvfb() { ! which Xvfb >/dev/null 2>&1; }
 need_pil() { ! python3 -c "import PIL" 2>/dev/null; }
+need_ezdxf() { ! python3 -c "import ezdxf" 2>/dev/null; }
 
 install_drawio() {
     if [ ! -f "${SCRIPT_DIR}/${DRAWIO_DEB}" ]; then
@@ -51,6 +52,12 @@ do_check() {
         pip install -q pillow 2>&1 | tail -1 || true
         fixed=1
     else echo "✓ PIL"; fi
+
+    if need_ezdxf; then
+        echo "✗ ezdxf 缺失（DXF 发射器需要），安装..."
+        pip install -q ezdxf 2>&1 | tail -1 || true
+        fixed=1
+    else echo "✓ ezdxf"; fi
 
     which python3 >/dev/null && echo "✓ python3" || echo "✗ python3 缺失"
 

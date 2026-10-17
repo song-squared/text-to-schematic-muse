@@ -148,13 +148,27 @@ def to_markdown(title, circuit, bom_rows, wire_rows, term_rows, ok, notes):
 
 # ---------- PNG 渲染（PIL，黑底白字，手机可读） ----------
 
-def render_png(path, bom_rows, wire_rows, term_rows, title="直接启动电路 · 报表 v1"):
-    from PIL import Image, ImageDraw, ImageFont
+def _load_font(size):
+    """中文字体按候选路径依次尝试，缺失则回退 PIL 内置字体（不崩溃）。"""
+    from PIL import ImageFont
     import glob
-    ttc = glob.glob("/usr/share/fonts/opentype/noto/NotoSerifCJK-Bold.ttc")[0]
-    f_title = ImageFont.truetype(ttc, 40)
-    f_head = ImageFont.truetype(ttc, 24)
-    f_cell = ImageFont.truetype(ttc, 22)
+    for pat in (
+        "/usr/share/fonts/opentype/noto/NotoSerifCJK-Bold.ttc",
+        "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
+        "/usr/share/fonts/truetype/noto/NotoSansCJK-Bold.ttc",
+        "/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc",
+    ):
+        hits = glob.glob(pat)
+        if hits:
+            return ImageFont.truetype(hits[0], size)
+    return ImageFont.load_default()  # 无中文字体时降级（中文显示为方框，但不崩）
+
+
+def render_png(path, bom_rows, wire_rows, term_rows, title="直接启动电路 · 报表 v1"):
+    from PIL import Image, ImageDraw
+    f_title = _load_font(40)
+    f_head = _load_font(24)
+    f_cell = _load_font(22)
 
     tables = [
         ("一、BOM 表", ["序号", "位号", "名称", "型号", "数量"], bom_rows),

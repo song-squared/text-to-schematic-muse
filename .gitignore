@@ -7,6 +7,7 @@ venv/
 
 # draw.io
 *.drawio.bak
+*.deb
 
 # OS / editors
 .DS_Store
