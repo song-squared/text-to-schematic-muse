@@ -186,21 +186,91 @@ class Circuit:
     # ---------- 渲染 ----------
 
     @staticmethod
-    def _manhattan(ctx, pts, w=3, color=None):
-        """画直角折线；相邻两点不共线时按"先横后竖"补拐点。返回实际路径点。"""
+    def _manhattan_pts(pts):
+        """只算直角折线路径点，不画。相邻两点不共线时按"先横后竖"补拐点。"""
         path = [pts[0]]
         for p in pts[1:]:
             q = path[-1]
             if q[0] != p[0] and q[1] != p[1]:
                 path.append((p[0], q[1]))
             path.append(p)
+        return path
+
+    @staticmethod
+    def _manhattan(ctx, pts, w=3, color=None):
+        """画直角折线；返回实际路径点。"""
+        path = Circuit._manhattan_pts(pts)
         for a, b in zip(path, path[1:]):
             ctx.wire(a[0], a[1], b[0], b[1], w=w, color=color)
         return path
 
+    @staticmethod
+    def _seg_intersect(p1, p2, p3, p4):
+        """两轴对齐线段求交点。只处理一垂一平；平行/共线返回 None。"""
+        (x1, y1), (x2, y2) = p1, p2
+        (x3, y3), (x4, y4) = p3, p4
+        v1 = abs(x1 - x2) < 1e-9
+        v2 = abs(x3 - x4) < 1e-9
+        if v1 == v2:
+            return None
+        if not v1:  # 确保 seg1 垂直
+            (x1, y1), (x2, y2), (x3, y3), (x4, y4) = (x3, y3), (x4, y4), (x1, y1), (x2, y2)
+        x, y = x1, y3
+        if (min(x3, x4) - 1e-9 <= x <= max(x3, x4) + 1e-9 and
+                min(y1, y2) - 1e-9 <= y <= max(y1, y2) + 1e-9):
+            return (x, y)
+        return None
+
+    @staticmethod
+    def _is_endpoint(pt, p1, p2, tol=1e-6):
+        x, y = pt
+        return ((abs(x - p1[0]) < tol and abs(y - p1[1]) < tol) or
+                (abs(x - p2[0]) < tol and abs(y - p2[1]) < tol))
+
+    @staticmethod
+    def _detect_crossings(wire_paths):
+        """检测导线交点，返回 (jumps, t_junctions)。
+        jumps: X 形跨越（线段中段交中段），需画圆弧。
+        t_junctions: T 形连接（一端点触另一线段中段），需画红点。
+        规则：交点若落在任一线段端点上，视为 T 形连接，不画圆弧。"""
+        segs = []
+        for wi, path in enumerate(wire_paths):
+            for i in range(len(path) - 1):
+                p1, p2 = path[i], path[i + 1]
+                if abs(p1[0] - p2[0]) < 1e-9 and abs(p1[1] - p2[1]) < 1e-9:
+                    continue
+                segs.append((p1, p2, wi))
+        jumps, t_junctions = [], []
+        seen_j, seen_t = set(), set()
+        n = len(segs)
+        for i in range(n):
+            p1, p2, wi = segs[i]
+            for j in range(i + 1, n):
+                p3, p4, wj = segs[j]
+                if wi == wj:
+                    continue
+                pt = Circuit._seg_intersect(p1, p2, p3, p4)
+                if pt is None:
+                    continue
+                e1 = Circuit._is_endpoint(pt, p1, p2)
+                e2 = Circuit._is_endpoint(pt, p3, p4)
+                if e1 and e2:
+                    continue  # 端点对端点：已由顶点计数处理
+                k = (round(pt[0], 1), round(pt[1], 1))
+                if e1 or e2:
+                    # T 形连接
+                    if k not in seen_t:
+                        seen_t.add(k)
+                        t_junctions.append((pt[0], pt[1]))
+                else:
+                    # X 形跨越
+                    if k not in seen_j:
+                        seen_j.add(k)
+                        jumps.append((pt[0], pt[1]))
+        return jumps, t_junctions
+
     def render(self, W=1600, H=1000, title="", subtitle="", notes=(),
-               extra_labels=()):
-        """组装 mxfile，返回 root。extra_labels: [(x, y, 文本, 字号), ...]。"""
+               extra_labels=(), jumps=(), auto_jumps=True):
         mxfile = ET.Element("mxfile", host="muse", type="device")
         diagram = ET.SubElement(mxfile, "diagram", id="circ", name="Page-1")
         model = ET.SubElement(diagram, "mxGraphModel",
@@ -225,21 +295,35 @@ class Circuit:
             rctx = RotCtx(ctx, inst.x, inst.y, inst.rotation)
             getattr(S, inst.symbol)(rctx, inst.x, inst.y)
 
-        # 2) 导线
+        # 2) 先算所有导线路径（不画），自动检测 X 形跨越
         term_pts = set()
         for inst in self.instances.values():
             for num, _, _ in TERMINALS[inst.symbol]:
                 x, y = self.terminal_pos(inst.id, num)
                 term_pts.add((round(x, 3), round(y, 3)))
-        end_counter = Counter()
+        wire_paths = []
         for w in self.wires:
             a = self.terminal_pos(w.a_id, w.a_term)
             b = self.terminal_pos(w.b_id, w.b_term)
-            path = self._manhattan(ctx, [a] + list(w.via) + [b])
+            wire_paths.append(self._manhattan_pts([a] + list(w.via) + [b]))
+        all_jumps = list(jumps)
+        t_junctions = []
+        if auto_jumps:
+            auto_j, auto_t = self._detect_crossings(wire_paths)
+            for jx, jy in auto_j:
+                if not any(abs(jx - ex) < 1 and abs(jy - ey) < 1 for ex, ey in all_jumps):
+                    all_jumps.append((jx, jy))
+            t_junctions = auto_t
+
+        # 3) 画导线 + 统计端点
+        end_counter = Counter()
+        for path in wire_paths:
+            for a, b in zip(path, path[1:]):
+                ctx.wire(a[0], a[1], b[0], b[1])
             for p in path:
                 end_counter[(round(p[0], 3), round(p[1], 3))] += 1
 
-        # 3) 端子红点 + 分支点红点（三段以上交汇、且非端子处）
+        # 4) 端子红点 + 分支点红点（三段以上交汇、且非端子处）+ T 形接点红点
         for inst in self.instances.values():
             for num, _, _ in TERMINALS[inst.symbol]:
                 x, y = self.terminal_pos(inst.id, num)
@@ -247,6 +331,11 @@ class Circuit:
         for (x, y), c in end_counter.items():
             if c >= 3 and (x, y) not in term_pts:
                 ctx.dot(x, y, r=7)
+        for tx, ty in t_junctions:
+            # T 形接点：端点触中段，自动补红点（若已被顶点计数覆盖则跳过）
+            k = (round(tx, 3), round(ty, 3))
+            if k not in term_pts and end_counter.get(k, 0) < 3:
+                ctx.dot(tx, ty, r=7)
 
         # 4) 位号 + 型号
         for inst in self.instances.values():
@@ -254,5 +343,9 @@ class Circuit:
                 lx, ly = inst.label_at
                 ctx.text(lx, ly, inst.tag, 24)
                 ctx.text(lx, ly + 32, inst.partno, 16, color="#CCCCCC")
+
+        # 5) 跨线圆弧（盖在导线上层）：手动 + 自动检测
+        for jx, jy in all_jumps:
+            ctx.jump_arc(jx, jy)
 
         return mxfile

@@ -79,6 +79,10 @@ def build():
 
 # ---------- 校验 ----------
 def main(version="v1"):
+    if version == "v8":
+        return main_v8()
+    if version == "v7":
+        return main_v7()
     if version == "v6":
         return main_v6()
     if version == "v5":
@@ -152,11 +156,18 @@ def build_v2():
                             1100, 604, remap={"21": "95", "22": "96"},
                             label_at=(1008, 630)))
 
-    # ---------- 接线（21 根；三相垂线 x=240/280/320 笔直） ----------
-    # 三相独立引下（L1/L2/L3 各自独立，顶部不再用横线短接）
-    c.add_wire(Wire(P(240, 100), "", "QF", "1"))
-    c.add_wire(Wire(P(280, 100), "", "QF", "3"))
-    c.add_wire(Wire(P(320, 100), "", "QF", "5"))
+    # ---------- 接线（27 根；三相母排分段 + 馈线，跨线处画圆弧） ----------
+    # 三相母排：三根通长横线（上中下 y=70/85/100），左侧标 L1/L2/L3；
+    # 每根在自家馈线处分段，接点自动打红点；馈线跨越异相母排处画圆弧
+    c.add_wire(Wire(P(200, 55), "", P(240, 55), ""))
+    c.add_wire(Wire(P(240, 55), "", P(350, 55), ""))
+    c.add_wire(Wire(P(240, 55), "", "QF", "1"))
+    c.add_wire(Wire(P(200, 80), "", P(280, 80), ""))
+    c.add_wire(Wire(P(280, 80), "", P(350, 80), ""))
+    c.add_wire(Wire(P(280, 80), "", "QF", "3"))
+    c.add_wire(Wire(P(200, 105), "", P(320, 105), ""))
+    c.add_wire(Wire(P(320, 105), "", P(350, 105), ""))
+    c.add_wire(Wire(P(320, 105), "", "QF", "5"))
     # QF -> KM 主触点（笔直垂线）
     c.add_wire(Wire("QF", "2", "KMm", "1"))
     c.add_wire(Wire("QF", "4", "KMm", "3"))
@@ -360,6 +371,78 @@ def main_v6():
                       notes=notes, extra_labels=labels)
     out = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                        "direct_start_v6.drawio")
+    ET.ElementTree(mxfile).write(out, encoding="unicode")
+    print("written:", out)
+
+
+def main_v7():
+    """v7：v6 + 三相母排画法（三根独立横线，上中下，左侧标 L1/L2/L3）。"""
+    c = build_v2()
+    errs = c.validate()
+    print("validate:", "通过" if not errs else "失败")
+    for e in errs:
+        print("  -", e)
+    print("实例数:", len(c.instances), "| 接线数:", len(c.wires))
+    if errs:
+        sys.exit(1)
+
+    W, H = 1600, 1000
+    labels = [
+        (190, 70, "L1", 20), (230, 85, "L2", 20), (270, 100, "L3", 20),
+        (90, 130, "主回路", 22),
+        (1100, 748, "N", 20),
+        (1150, 142, "Lc", 20),
+        (1300, 150, "控制回路", 22),
+        (1140, 248, "N1", 16), (1140, 434, "N2", 16),
+    ]
+    notes = [
+        "注：型号为示例占位；FR 辅助常闭触点标准编号 95-96，本图以 nc_contact 符号经端子重命名（21→95、22→96）实现",
+        "三极符号极距统一（QF/KM 主触点/FR 相邻极距 40px）；FR 为三个独立热元件（无外框），每相一个；KM 线圈旋转 270°（A1 上、A2 下）",
+        "电机为顶部接线盒式（U/V/W 一字排开 40px），FR→M 三线笔直垂线零折弯；顶部为三相母排（三根独立横线）",
+        "N1、N2 为导线分支点（红点）；SB2 与 KM 常开触点并联构成自锁",
+    ]
+    mxfile = c.render(W, H,
+                      title="直接启动电路（端到端验证 v7）",
+                      subtitle="9 实例 / 21 接线 · 极距统一 · FR 独立热元件 · 电机接线盒 · 三相母排 · 型号为示例",
+                      notes=notes, extra_labels=labels)
+    out = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                       "direct_start_v7.drawio")
+    ET.ElementTree(mxfile).write(out, encoding="unicode")
+    print("written:", out)
+
+
+def main_v8():
+    """v8：v7 + 三相母排按工业画法（三根通长横线，接点红点，跨线圆弧）。"""
+    c = build_v2()
+    errs = c.validate()
+    print("validate:", "通过" if not errs else "失败")
+    for e in errs:
+        print("  -", e)
+    print("实例数:", len(c.instances), "| 接线数:", len(c.wires))
+    if errs:
+        sys.exit(1)
+
+    W, H = 1600, 1000
+    labels = [
+        (180, 55, "L1", 20), (180, 80, "L2", 20), (180, 105, "L3", 20),
+        (90, 130, "主回路", 22),
+        (1100, 748, "N", 20),
+        (1150, 142, "Lc", 20),
+        (1300, 150, "控制回路", 22),
+        (1140, 248, "N1", 16), (1140, 434, "N2", 16),
+    ]
+    notes = [
+        "注：型号为示例占位；FR 辅助常闭触点标准编号 95-96，本图以 nc_contact 符号经端子重命名（21→95、22→96）实现",
+        "三极符号极距统一（QF/KM 主触点/FR 相邻极距 40px）；FR 为三个独立热元件（无外框），每相一个；KM 线圈旋转 270°（A1 上、A2 下）",
+        "电机为顶部接线盒式（U/V/W 一字排开 40px），FR→M 三线笔直垂线零折弯；顶部为三相母排（三根通长横线，接点红点，跨线圆弧）",
+        "N1、N2 为导线分支点（红点）；SB2 与 KM 常开触点并联构成自锁",
+    ]
+    mxfile = c.render(W, H,
+                      title="直接启动电路（端到端验证 v8）",
+                      subtitle="9 实例 / 27 接线 · 三相母排（接点红点/跨线圆弧自动） · 型号为示例",
+                      notes=notes, extra_labels=labels)  # 跨线圆弧由 auto_jumps 自动检测
+    out = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                       "direct_start_v8.drawio")
     ET.ElementTree(mxfile).write(out, encoding="unicode")
     print("written:", out)
 

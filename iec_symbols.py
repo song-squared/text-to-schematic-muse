@@ -34,6 +34,32 @@ class Ctx:
         ET.SubElement(g, "mxPoint", {"x": str(x1), "y": str(y1), "as": "sourcePoint"})
         ET.SubElement(g, "mxPoint", {"x": str(x2), "y": str(y2), "as": "targetPoint"})
 
+    def curved_wire(self, x1, y1, x2, y2, waypoints=(), color=None, w=3):
+        """带 waypoints 的曲线导线（draw.io curved=1 样条）。"""
+        color = color or self.WHITE
+        s = "endArrow=none;html=1;strokeColor=%s;strokeWidth=%d;curved=1;" % (color, w)
+        c = ET.SubElement(self.root, "mxCell", id=self.nid(), style=s, edge="1", parent="1")
+        g = ET.SubElement(c, "mxGeometry", {"relative": "1", "as": "geometry"})
+        ET.SubElement(g, "mxPoint", {"x": str(x1), "y": str(y1), "as": "sourcePoint"})
+        ET.SubElement(g, "mxPoint", {"x": str(x2), "y": str(y2), "as": "targetPoint"})
+        if waypoints:
+            arr = ET.SubElement(g, "Array", {"as": "points"})
+            for wx, wy in waypoints:
+                ET.SubElement(arr, "mxPoint", {"x": str(wx), "y": str(wy)})
+
+    def jump_arc(self, x, y, r=7, direction="right"):
+        """跨线圆弧：垂直导线在 (x,y) 处跳过水平母排。
+        先黑底擦除垂直线段，再补回水平母排，最后画凸起圆弧。"""
+        # 1) 黑底擦除（只盖垂直线，不盖水平线太多）
+        self.rect(x - 5, y - r, 10, 2 * r, fill="#000000", stroke="#000000", sw=1)
+        # 2) 补回水平母排被擦掉的一段
+        self.wire(x - 5, y, x + 5, y)
+        # 3) 圆弧（向右凸）
+        if direction == "right":
+            self.curved_wire(x, y - r, x, y + r, waypoints=[(x + r + 2, y)])
+        else:
+            self.curved_wire(x, y - r, x, y + r, waypoints=[(x - r - 2, y)])
+
     def dot(self, x, y, r=7, color=None):
         color = color or self.RED
         c = ET.SubElement(self.root, "mxCell", id=self.nid(),

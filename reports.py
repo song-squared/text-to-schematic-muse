@@ -18,8 +18,10 @@ from circuit import P, _is_free
 
 # 自由点坐标 -> 可读名（与 direct_start.py 的版式标注一致）
 FREE_NAMES = {
-    P(240, 100): "L1", P(280, 100): "L2", P(320, 100): "L3",
-    P(190, 100): "母线", P(370, 100): "母线",
+    P(240, 55): "L1", P(280, 80): "L2", P(320, 105): "L3",
+    P(200, 55): "L1母排", P(350, 55): "L1母排",
+    P(200, 80): "L2母排", P(350, 80): "L2母排",
+    P(200, 105): "L3母排", P(350, 105): "L3母排",
     P(1100, 120): "Lc", P(1100, 270): "N1",
     P(1100, 410): "N2", P(1100, 720): "N",
 }
@@ -238,7 +240,13 @@ def render_png(path, bom_rows, wire_rows, term_rows, title="直接启动电路 �
 
 def main(version="v1"):
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    if version == "v6":
+    if version == "v8":
+        from direct_start import build_v2 as build
+        tag = "v8"
+    elif version == "v7":
+        from direct_start import build_v2 as build
+        tag = "v7"
+    elif version == "v6":
         from direct_start import build_v2 as build
         tag = "v6"
     elif version == "v5":
