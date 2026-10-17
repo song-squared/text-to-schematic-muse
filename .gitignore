@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# draw.io
+*.drawio.bak
+
+# OS / editors
+.DS_Store
+Thumbs.db
+*~
+.vscode/
+.idea/
+
+# scratch
+/tmp/
+*.log
