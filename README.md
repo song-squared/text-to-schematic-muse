@@ -68,6 +68,13 @@ xvfb-run -a /opt/drawio/drawio --no-sandbox --export \
   --format png --output 直接启动电路-v8.png direct_start_v8.drawio
 ```
 
+Emitters take any circuit module by name — no code changes for new circuits:
+
+```bash
+python3 dxf_emit.py forward_reverse   # -> forward_reverse.dxf (AutoCAD)
+python3 qet_emit.py forward_reverse   # -> forward_reverse.qet (QElectroTech)
+```
+
 Core scripts depend only on the Python standard library; draw.io is needed
 only for PNG export.
 
@@ -85,14 +92,12 @@ conversational:
 3. **"Draw me a motor forward/reverse starter circuit."**
    Muse builds the connection list, validates every wire, and generates the
    `.drawio` schematic plus the verification report.
-4. **Collect the result.** You get back:
-   - a PNG preview (check it on your phone),
-   - the editable `.drawio` file (open in draw.io, tweak anything),
-   - the BOM / wire list / terminal list,
-   - `.dxf` for AutoCAD and `.qet` for QElectroTech, if you need them
-     (`python3 dxf_emit.py forward_reverse`,
-     `python3 qet_emit.py forward_reverse` — pass any circuit module name,
-     no code changes needed).
+4. **Collect the result.** You get 5 files, no commands needed:
+   - PNG preview (check it on your phone),
+   - editable `.drawio` (open in draw.io, tweak anything),
+   - BOM / wire list / terminal list,
+   - `.dxf` for AutoCAD,
+   - `.qet` for QElectroTech reports.
 
 That's it — describe the circuit in one sentence, receive a verified diagram.
 

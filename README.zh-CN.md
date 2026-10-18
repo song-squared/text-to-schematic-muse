@@ -60,6 +60,13 @@ xvfb-run -a /opt/drawio/drawio --no-sandbox --export \
   --format png --output 直接启动电路-v8.png direct_start_v8.drawio
 ```
 
+发射器按电路模块名通用，新电路不用改代码：
+
+```bash
+python3 dxf_emit.py forward_reverse   # -> forward_reverse.dxf（进 AutoCAD）
+python3 qet_emit.py forward_reverse   # -> forward_reverse.qet（进 QElectroTech）
+```
+
 核心脚本只依赖 Python 标准库；draw.io 只在导出 PNG 时需要。
 
 ## 👶 小白篇：不用碰命令行
@@ -73,12 +80,12 @@ xvfb-run -a /opt/drawio/drawio --no-sandbox --export \
    Muse 在自己的机器上跑 `./setup.sh check`，并验证 draw.io 导出正常。
 3. **"给我画一个电机启动正反转电路图。"**
    Muse 列出接线表、逐条验证、生成 `.drawio` 原理图和验证报告。
-4. **收结果。** 你拿到：
+4. **收结果。** 你拿到 5 个文件，不用敲任何命令：
    - PNG 预览图（手机上直接看），
    - 可编辑的 `.drawio` 文件（用 draw.io 打开，随便改），
    - BOM 表 / 接线表 / 端子表，
-   - 要进 AutoCAD 的 `.dxf`、要进 QElectroTech 报表的 `.qet`（`python3 dxf_emit.py forward_reverse`、
-     `python3 qet_emit.py forward_reverse`——传电路模块名就行，新电路不用改代码）。
+   - `.dxf`（进 AutoCAD），
+   - `.qet`（进 QElectroTech 报表）。
 
 就这么简单——一句话描述电路，收一张验证过的图。
 
