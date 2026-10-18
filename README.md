@@ -41,10 +41,12 @@ This is the fourth open-source project from
 
 ![forward/reverse starter](docs/forward-reverse.png)
 
-> **Note on the PNG previews**: the two PNGs above are exported locally with
-> draw.io (see the export command in Quickstart). If an image shows as broken
-> on GitHub, the binary simply hasn't been uploaded yet — run the export
-> command yourself and you'll get the identical file.
+> **About the PNG previews**: this repo intentionally does not carry PNG
+> binaries — automated pushes can't upload them (a GitHub connector
+> limitation), and manually uploading after every update wastes everyone's
+> time. The previews are generated locally with draw.io any time you need
+> them; the export command is in Quickstart above. If an image shows as
+> broken here, that's why — run the export and you'll have the identical file.
 
 > **Status**: v0.1 is a teaching preview — terminal data is cross-reviewed and
 > electrical correctness verified. It does not claim strict IEC/GB compliance
