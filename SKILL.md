@@ -39,7 +39,7 @@ python3 verify_<电路>.py       # 必须全部通过
 - `fault_injection_test`：故障注入
 - 每个检查配负回归测试
 
-详见 `LESSONS.md` 20 条教训。
+详见 `LESSONS.md` 24 条教训。
 
 ### 3. 审查（可选）
 
