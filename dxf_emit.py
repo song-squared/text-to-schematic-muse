@@ -217,14 +217,12 @@ def verify_dxf(path):
 
 
 if __name__ == "__main__":
+    import importlib
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    which = sys.argv[1] if len(sys.argv) > 1 else "direct_start"
-    if which == "fr":
-        from forward_reverse import build
-        out_name = "forward_reverse.dxf"
-    else:
-        from direct_start import build
-        out_name = "direct_start_v1.dxf"
+    # 用法：python3 dxf_emit.py [电路模块名]，缺省 direct_start；新电路无需改代码
+    mod_name = sys.argv[1] if len(sys.argv) > 1 else "direct_start"
+    build = importlib.import_module(mod_name).build
+    out_name = {"direct_start": "direct_start_v1.dxf"}.get(mod_name, mod_name + ".dxf")
     c = build()
     errs = c.validate()
     assert not errs, errs
