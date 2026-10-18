@@ -203,9 +203,10 @@ def emit_qet(circuit, path, title="text-to-schematic-muse"):
             disp = inst.remap.get(num, num)  # 库编号 -> 显示编号
             tu = str(uuid.uuid4())
             term_uuid[(inst.id, disp)] = tu
+            px, py = circuit.terminal_pos(inst.id, num)
             ET.SubElement(el, "terminal_ref", {
                 "uuid": tu, "name": disp,
-                "x": "%g" % (inst.x + dx), "y": "%g" % (inst.y + dy)})
+                "x": "%g" % px, "y": "%g" % py})
         stats["elements"] += 1
 
     for w in circuit.wires:
@@ -265,11 +266,16 @@ def verify_qet(path):
 
 if __name__ == "__main__":
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    from direct_start import build
+    which = sys.argv[1] if len(sys.argv) > 1 else "direct_start"
+    if which == "fr":
+        from forward_reverse import build
+        out_name = "forward_reverse.qet"
+    else:
+        from direct_start import build
+        out_name = "direct_start.qet"
     c = build()
     assert not c.validate()
-    out = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                       "direct_start.qet")
+    out = os.path.join(os.path.dirname(os.path.abspath(__file__)), out_name)
     stats = emit_qet(c, out, title="直接启动电路（端到端验证 v1）")
     print("written:", out)
     print("emit stats:", stats)

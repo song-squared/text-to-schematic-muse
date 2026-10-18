@@ -94,9 +94,11 @@ def emit_dxf(circuit, path, W=1600, H=1000, title="", subtitle="", notes=(),
     stats = Counter()
 
     # 1) 实例几何 -> SYMBOLS
+    from circuit import RotCtx
     for inst in circuit.instances.values():
         rec = RecCtx()
-        getattr(S, inst.symbol)(rec, inst.x, inst.y)
+        rctx = RotCtx(rec, inst.x, inst.y, inst.rotation)
+        getattr(S, inst.symbol)(rctx, inst.x, inst.y)
         for op in rec.ops:
             k = op[0]
             if k == "line":
@@ -159,7 +161,7 @@ def emit_dxf(circuit, path, W=1600, H=1000, title="", subtitle="", notes=(),
     term_pts = set()
     for inst in circuit.instances.values():
         for num, dx, dy in TERMINALS[inst.symbol]:
-            px, py = inst.x + dx, inst.y + dy
+            px, py = circuit.terminal_pos(inst.id, num)
             term_pts.add((round(px, 3), round(py, 3)))
             msp.add_circle((px, fy(py)), 7,
                            dxfattribs={"layer": "DOTS"})
@@ -216,12 +218,17 @@ def verify_dxf(path):
 
 if __name__ == "__main__":
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    from direct_start import build
+    which = sys.argv[1] if len(sys.argv) > 1 else "direct_start"
+    if which == "fr":
+        from forward_reverse import build
+        out_name = "forward_reverse.dxf"
+    else:
+        from direct_start import build
+        out_name = "direct_start_v1.dxf"
     c = build()
     errs = c.validate()
     assert not errs, errs
-    out = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                       "direct_start_v1.dxf")
+    out = os.path.join(os.path.dirname(os.path.abspath(__file__)), out_name)
     labels = [
         (240, 70, "L1", 20), (280, 70, "L2", 20), (320, 70, "L3", 20),
         (90, 130, "主回路", 22),
