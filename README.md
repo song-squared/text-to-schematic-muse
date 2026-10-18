@@ -32,6 +32,10 @@ This is the fourth open-source project from
 - **Second proof: forward/reverse motor control** — 15 instances, 42 wires,
   with self-locking, electrical + mechanical interlocking, and automatic
   cross-over arcs (`forward_reverse.py`, `verify_forward_reverse.py`):
+- **Third proof: star–delta reduced-voltage starter** — 20 instances, 57 wires,
+  KT timer 5s star → 0.5s gap → delta, electrical + mechanical interlocking,
+  FR 95-96 series protection (`star_delta.py`, `verify_star_delta.py`,
+  `verify_common.py` shared geometry verification library):
 - **Reports** — BOM, wire list, and terminal list generated from the model
   by deterministic lookup (`reports.py`).
 - **Emitters** — the same model emits `.dxf` (ezdxf, for AutoCAD) and `.qet`
@@ -40,6 +44,8 @@ This is the fourth open-source project from
 ![direct-on-line starter, v8](docs/direct-start-v8.png)
 
 ![forward/reverse starter](docs/forward-reverse.png)
+
+![star-delta starter](docs/star-delta.png)
 
 > **About the PNG previews**: this repo intentionally does not carry PNG
 > binaries — automated pushes can't upload them (a GitHub connector
@@ -58,10 +64,12 @@ This is the fourth open-source project from
 git clone https://github.com/song-squared/text-to-schematic-muse
 cd text-to-schematic-muse
 
-python3 verify_terminals.py   # 48 symbols / 119 terminals, all checks
+python3 verify_terminals.py   # 49 symbols / 125 terminals, all checks
 python3 direct_start.py v8     # generates direct_start_v8.drawio from the connection list
 python3 forward_reverse.py       # generates forward_reverse.drawio (forward/reverse control)
 python3 verify_forward_reverse.py  # topology-based verification, all checks
+python3 star_delta.py            # generates star_delta.drawio (star-delta starter)
+python3 verify_star_delta.py     # timing + geometry verification, all checks
 
 ./setup.sh check              # installs draw.io if missing (re-run after a VM reset)
 xvfb-run -a /opt/drawio/drawio --no-sandbox --export \

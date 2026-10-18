@@ -1,0 +1,563 @@
+<?xml version="1.0" ?>
+<project version="0.9" title="直接启动电路（端到端验证 v1）">
+  <definitions>
+    <definition type="element" width="108" height="72" hotspot_x="54" hotspot_y="5" orientation="dnse" id="tsm:circuit_breaker_3p">
+      <names>
+        <name lang="en">circuit_breaker_3p</name>
+        <name lang="zh">circuit_breaker_3p</name>
+      </names>
+      <informations>Author: text-to-schematic-muse emitter
+License: MIT
+Converted from iec_symbols.circuit_breaker_3p</informations>
+      <description>
+        <line x1="-40" y1="0" x2="-40" y2="16" antialias="false"/>
+        <line x1="-49" y1="22" x2="-31" y2="40" antialias="false"/>
+        <line x1="-49" y1="40" x2="-31" y2="22" antialias="false"/>
+        <line x1="-40" y1="46" x2="-40" y2="62" antialias="false"/>
+        <line x1="0" y1="0" x2="0" y2="16" antialias="false"/>
+        <line x1="-9" y1="22" x2="9" y2="40" antialias="false"/>
+        <line x1="-9" y1="40" x2="9" y2="22" antialias="false"/>
+        <line x1="0" y1="46" x2="0" y2="62" antialias="false"/>
+        <line x1="40" y1="0" x2="40" y2="16" antialias="false"/>
+        <line x1="31" y1="22" x2="49" y2="40" antialias="false"/>
+        <line x1="31" y1="40" x2="49" y2="22" antialias="false"/>
+        <line x1="40" y1="46" x2="40" y2="62" antialias="false"/>
+        <line x1="-40" y1="31" x2="40" y2="31" antialias="false"/>
+        <terminal x="-40" y="0" orientation="n" name="1"/>
+        <terminal x="0" y="0" orientation="n" name="3"/>
+        <terminal x="40" y="0" orientation="n" name="5"/>
+        <terminal x="-40" y="62" orientation="s" name="2"/>
+        <terminal x="0" y="62" orientation="s" name="4"/>
+        <terminal x="40" y="62" orientation="s" name="6"/>
+      </description>
+    </definition>
+    <definition type="element" width="103" height="62" hotspot_x="45" hotspot_y="5" orientation="dnse" id="tsm:contactor_main_contact">
+      <names>
+        <name lang="en">contactor_main_contact</name>
+        <name lang="zh">contactor_main_contact</name>
+      </names>
+      <informations>Author: text-to-schematic-muse emitter
+License: MIT
+Converted from iec_symbols.contactor_main_contact</informations>
+      <description>
+        <line x1="-40" y1="0" x2="-40" y2="14" antialias="false"/>
+        <line x1="-40" y1="14" x2="-27" y2="32" antialias="false"/>
+        <line x1="-40" y1="36" x2="-40" y2="52" antialias="false"/>
+        <line x1="0" y1="0" x2="0" y2="14" antialias="false"/>
+        <line x1="0" y1="14" x2="13" y2="32" antialias="false"/>
+        <line x1="0" y1="36" x2="0" y2="52" antialias="false"/>
+        <line x1="40" y1="0" x2="40" y2="14" antialias="false"/>
+        <line x1="40" y1="14" x2="53" y2="32" antialias="false"/>
+        <line x1="40" y1="36" x2="40" y2="52" antialias="false"/>
+        <line x1="-40" y1="24" x2="40" y2="24" antialias="false"/>
+        <terminal x="-40" y="0" orientation="n" name="1"/>
+        <terminal x="-40" y="52" orientation="s" name="2"/>
+        <terminal x="0" y="0" orientation="n" name="3"/>
+        <terminal x="0" y="52" orientation="s" name="4"/>
+        <terminal x="40" y="0" orientation="n" name="5"/>
+        <terminal x="40" y="52" orientation="s" name="6"/>
+      </description>
+    </definition>
+    <definition type="element" width="114" height="28" hotspot_x="-23" hotspot_y="5" orientation="dnse" id="tsm:thermal_relay_3p">
+      <names>
+        <name lang="en">thermal_relay_3p</name>
+        <name lang="zh">thermal_relay_3p</name>
+      </names>
+      <informations>Author: text-to-schematic-muse emitter
+License: MIT
+Converted from iec_symbols.thermal_relay_3p</informations>
+      <description>
+        <polygon x1="28" y1="0" x2="52" y2="0" x3="52" y3="18" x4="28" y4="18" closed="true" antialias="false"/>
+        <polygon x1="68" y1="0" x2="92" y2="0" x3="92" y3="18" x4="68" y4="18" closed="true" antialias="false"/>
+        <polygon x1="108" y1="0" x2="132" y2="0" x3="132" y3="18" x4="108" y4="18" closed="true" antialias="false"/>
+        <terminal x="40" y="0" orientation="n" name="1"/>
+        <terminal x="40" y="18" orientation="s" name="2"/>
+        <terminal x="80" y="0" orientation="n" name="3"/>
+        <terminal x="80" y="18" orientation="s" name="4"/>
+        <terminal x="120" y="0" orientation="n" name="5"/>
+        <terminal x="120" y="18" orientation="s" name="6"/>
+      </description>
+    </definition>
+    <definition type="element" width="106" height="126" hotspot_x="53" hotspot_y="63" orientation="dnse" id="tsm:motor_3ph_6t">
+      <names>
+        <name lang="en">motor_3ph_6t</name>
+        <name lang="zh">motor_3ph_6t</name>
+      </names>
+      <informations>Author: text-to-schematic-muse emitter
+License: MIT
+Converted from iec_symbols.motor_3ph_6t</informations>
+      <description>
+        <polygon x1="-48" y1="-58" x2="48" y2="-58" x3="48" y3="-30" x4="-48" y4="-30" closed="true" antialias="false"/>
+        <ellipse x="-32" y="-32" width="64" height="64" antialias="true"/>
+        <text x="0" y="2" size="30" text="M"/>
+        <polygon x1="-48" y1="30" x2="48" y2="30" x3="48" y3="58" x4="-48" y4="58" closed="true" antialias="false"/>
+        <terminal x="-40" y="-58" orientation="n" name="U1"/>
+        <terminal x="0" y="-58" orientation="n" name="V1"/>
+        <terminal x="40" y="-58" orientation="n" name="W1"/>
+        <terminal x="-40" y="58" orientation="s" name="U2"/>
+        <terminal x="0" y="58" orientation="s" name="V2"/>
+        <terminal x="40" y="58" orientation="s" name="W2"/>
+      </description>
+    </definition>
+    <definition type="element" width="40" height="62" hotspot_x="20" hotspot_y="31" orientation="dnse" id="tsm:nc_pushbutton">
+      <names>
+        <name lang="en">nc_pushbutton</name>
+        <name lang="zh">nc_pushbutton</name>
+      </names>
+      <informations>Author: text-to-schematic-muse emitter
+License: MIT
+Converted from iec_symbols.nc_pushbutton</informations>
+      <description>
+        <line x1="0" y1="-26" x2="0" y2="-12" antialias="false"/>
+        <line x1="0" y1="12" x2="0" y2="26" antialias="false"/>
+        <ellipse x="-11" y="-11" width="22" height="22" antialias="true"/>
+        <line x1="-15" y1="-16" x2="15" y2="-16" antialias="false"/>
+        <line x1="-13" y1="-8" x2="13" y2="-24" antialias="false"/>
+        <terminal x="0" y="-26" orientation="n" name="11"/>
+        <terminal x="0" y="26" orientation="s" name="12"/>
+      </description>
+    </definition>
+    <definition type="element" width="40" height="62" hotspot_x="20" hotspot_y="31" orientation="dnse" id="tsm:pushbutton">
+      <names>
+        <name lang="en">pushbutton</name>
+        <name lang="zh">pushbutton</name>
+      </names>
+      <informations>Author: text-to-schematic-muse emitter
+License: MIT
+Converted from iec_symbols.pushbutton</informations>
+      <description>
+        <line x1="0" y1="-26" x2="0" y2="-12" antialias="false"/>
+        <line x1="0" y1="12" x2="0" y2="26" antialias="false"/>
+        <ellipse x="-11" y="-11" width="22" height="22" antialias="true"/>
+        <line x1="-15" y1="-16" x2="15" y2="-16" antialias="false"/>
+        <terminal x="0" y="-26" orientation="n" name="13"/>
+        <terminal x="0" y="26" orientation="s" name="14"/>
+      </description>
+    </definition>
+    <definition type="element" width="25" height="62" hotspot_x="5" hotspot_y="5" orientation="dnse" id="tsm:no_contact">
+      <names>
+        <name lang="en">no_contact</name>
+        <name lang="zh">no_contact</name>
+      </names>
+      <informations>Author: text-to-schematic-muse emitter
+License: MIT
+Converted from iec_symbols.no_contact</informations>
+      <description>
+        <line x1="0" y1="0" x2="0" y2="16" antialias="false"/>
+        <line x1="0" y1="16" x2="15" y2="36" antialias="false"/>
+        <line x1="0" y1="36" x2="0" y2="52" antialias="false"/>
+        <terminal x="0" y="0" orientation="n" name="13"/>
+        <terminal x="0" y="52" orientation="s" name="14"/>
+      </description>
+    </definition>
+    <definition type="element" width="32" height="62" hotspot_x="12" hotspot_y="5" orientation="dnse" id="tsm:nc_contact">
+      <names>
+        <name lang="en">nc_contact</name>
+        <name lang="zh">nc_contact</name>
+      </names>
+      <informations>Author: text-to-schematic-muse emitter
+License: MIT
+Converted from iec_symbols.nc_contact</informations>
+      <description>
+        <line x1="0" y1="0" x2="0" y2="16" antialias="false"/>
+        <line x1="0" y1="16" x2="15" y2="36" antialias="false"/>
+        <line x1="0" y1="36" x2="0" y2="52" antialias="false"/>
+        <line x1="-7" y1="32" x2="11" y2="20" antialias="false"/>
+        <terminal x="0" y="0" orientation="n" name="21"/>
+        <terminal x="0" y="52" orientation="s" name="22"/>
+      </description>
+    </definition>
+    <definition type="element" width="37" height="62" hotspot_x="17" hotspot_y="5" orientation="dnse" id="tsm:time_delay_nc">
+      <names>
+        <name lang="en">time_delay_nc</name>
+        <name lang="zh">time_delay_nc</name>
+      </names>
+      <informations>Author: text-to-schematic-muse emitter
+License: MIT
+Converted from iec_symbols.time_delay_nc</informations>
+      <description>
+        <line x1="0" y1="0" x2="0" y2="16" antialias="false"/>
+        <line x1="0" y1="16" x2="15" y2="36" antialias="false"/>
+        <line x1="0" y1="36" x2="0" y2="52" antialias="false"/>
+        <line x1="-7" y1="32" x2="11" y2="20" antialias="false"/>
+        <line x1="-12" y1="8" x2="-12" y2="24" antialias="false"/>
+        <line x1="-12" y1="8" x2="12" y2="8" antialias="false"/>
+        <terminal x="0" y="0" orientation="n" name="15"/>
+        <terminal x="0" y="52" orientation="s" name="16"/>
+      </description>
+    </definition>
+    <definition type="element" width="37" height="62" hotspot_x="17" hotspot_y="5" orientation="dnse" id="tsm:time_delay_no">
+      <names>
+        <name lang="en">time_delay_no</name>
+        <name lang="zh">time_delay_no</name>
+      </names>
+      <informations>Author: text-to-schematic-muse emitter
+License: MIT
+Converted from iec_symbols.time_delay_no</informations>
+      <description>
+        <line x1="0" y1="0" x2="0" y2="16" antialias="false"/>
+        <line x1="0" y1="16" x2="15" y2="36" antialias="false"/>
+        <line x1="0" y1="36" x2="0" y2="52" antialias="false"/>
+        <line x1="-12" y1="8" x2="-12" y2="24" antialias="false"/>
+        <line x1="-12" y1="8" x2="12" y2="8" antialias="false"/>
+        <terminal x="0" y="0" orientation="n" name="15"/>
+        <terminal x="0" y="52" orientation="s" name="18"/>
+      </description>
+    </definition>
+    <definition type="element" width="74" height="38" hotspot_x="37" hotspot_y="5" orientation="dnse" id="tsm:coil">
+      <names>
+        <name lang="en">coil</name>
+        <name lang="zh">coil</name>
+      </names>
+      <informations>Author: text-to-schematic-muse emitter
+License: MIT
+Converted from iec_symbols.coil</informations>
+      <description>
+        <polygon x1="-32" y1="0" x2="32" y2="0" x3="32" y3="28" x4="-32" y4="28" closed="true" antialias="false"/>
+        <terminal x="-32" y="14" orientation="w" name="A1"/>
+        <terminal x="32" y="14" orientation="e" name="A2"/>
+      </description>
+    </definition>
+    <definition type="element" width="74" height="46" hotspot_x="37" hotspot_y="23" orientation="dnse" id="tsm:time_relay_coil">
+      <names>
+        <name lang="en">time_relay_coil</name>
+        <name lang="zh">time_relay_coil</name>
+      </names>
+      <informations>Author: text-to-schematic-muse emitter
+License: MIT
+Converted from iec_symbols.time_relay_coil</informations>
+      <description>
+        <polygon x1="-32" y1="-18" x2="32" y2="-18" x3="32" y3="18" x4="-32" y4="18" closed="true" antialias="false"/>
+        <line x1="-24" y1="-10" x2="-24" y2="10" antialias="false"/>
+        <line x1="-24" y1="-10" x2="24" y2="-10" antialias="false"/>
+        <terminal x="-32" y="0" orientation="w" name="A1"/>
+        <terminal x="32" y="0" orientation="e" name="A2"/>
+      </description>
+    </definition>
+  </definitions>
+  <diagram order="0">
+    <element type="custom://text-to-schematic-muse/circuit_breaker_3p" x="280" y="150" uuid="f7a0accd-5ce4-4071-9729-121674e8af1e" label="QF DZ47-63/3P C32">
+      <terminal_ref uuid="1697dcc9-cd12-4c29-9b80-d0ba0aba48de" name="1" x="240" y="150"/>
+      <terminal_ref uuid="98714b49-b31e-4d1a-b29c-cbba184b5f3b" name="3" x="280" y="150"/>
+      <terminal_ref uuid="deb1d992-9128-41c8-b43c-094b3532018c" name="5" x="320" y="150"/>
+      <terminal_ref uuid="48fb8c1f-8fa2-4e27-bb5b-0cf4eeb00e79" name="2" x="240" y="212"/>
+      <terminal_ref uuid="60404a5e-6326-4241-80b2-9e64bae32835" name="4" x="280" y="212"/>
+      <terminal_ref uuid="0dfaa624-ec6b-4c38-b61b-1e7eedacf079" name="6" x="320" y="212"/>
+    </element>
+    <element type="custom://text-to-schematic-muse/contactor_main_contact" x="280" y="300" uuid="f6a9bd58-7cc7-4745-990b-83146571f721" label="KM1 CJX2-1210">
+      <terminal_ref uuid="84555139-7c5c-4519-9aaf-9b72489a3ead" name="1" x="240" y="300"/>
+      <terminal_ref uuid="09fe66de-e8d3-40c0-92ae-1f58ac2e4cc7" name="2" x="240" y="352"/>
+      <terminal_ref uuid="9cafae9d-a085-4874-ad9c-4f34c52b5db1" name="3" x="280" y="300"/>
+      <terminal_ref uuid="15a2c093-e749-4be2-a424-b9226ce50338" name="4" x="280" y="352"/>
+      <terminal_ref uuid="31bd4e36-784b-4cd9-bbe8-c2c5e91e4cf8" name="5" x="320" y="300"/>
+      <terminal_ref uuid="8afed876-5576-43fc-99cf-a6b8e508ed57" name="6" x="320" y="352"/>
+    </element>
+    <element type="custom://text-to-schematic-muse/contactor_main_contact" x="520" y="300" uuid="af2d220a-d5c5-4666-ad3c-996a3a1d6c33" label="KM2 CJX2-1210">
+      <terminal_ref uuid="d67e429b-f464-4150-9aea-59c4e5001f01" name="1" x="480" y="300"/>
+      <terminal_ref uuid="9a765da6-c794-4bd4-b850-9f0ee65be1db" name="2" x="480" y="352"/>
+      <terminal_ref uuid="3b4476a2-a9a2-46b0-bcb5-10788b3eb68e" name="3" x="520" y="300"/>
+      <terminal_ref uuid="3f211410-437c-4833-a29a-a43d3637b1cd" name="4" x="520" y="352"/>
+      <terminal_ref uuid="353b4fea-c4ad-4e77-a61b-8774142ed5f7" name="5" x="560" y="300"/>
+      <terminal_ref uuid="a59c41d3-1b0e-46e1-af97-f868d1236a57" name="6" x="560" y="352"/>
+    </element>
+    <element type="custom://text-to-schematic-muse/contactor_main_contact" x="760" y="300" uuid="377c5f8e-bb51-492b-a5a5-4177e07d5e6a" label="KM3 CJX2-1210">
+      <terminal_ref uuid="83920476-1504-47b9-ad22-1f5047fd6f9c" name="1" x="720" y="300"/>
+      <terminal_ref uuid="e13e6129-899c-4074-8737-d8796b53ceba" name="2" x="720" y="352"/>
+      <terminal_ref uuid="bddbaded-67ca-4cc8-a7f4-20e196f72315" name="3" x="760" y="300"/>
+      <terminal_ref uuid="2cdae141-27c7-4932-9b07-779ce580fbca" name="4" x="760" y="352"/>
+      <terminal_ref uuid="0c5d2c67-7571-4f8b-a564-4164ca549241" name="5" x="800" y="300"/>
+      <terminal_ref uuid="d17bd415-cf82-4d37-a731-0a1c11564cc9" name="6" x="800" y="352"/>
+    </element>
+    <element type="custom://text-to-schematic-muse/thermal_relay_3p" x="200" y="440" uuid="4e8863d7-5866-4915-aa27-785d246464ee" label="FR JR36-20">
+      <terminal_ref uuid="374432b7-b19c-4fd4-b0c1-6c623c2ab964" name="1" x="240" y="440"/>
+      <terminal_ref uuid="081fc8bf-abaf-4f49-86e9-b3253eba380c" name="2" x="240" y="458"/>
+      <terminal_ref uuid="e3ecf5f4-490d-4b99-8978-379b2440a2b3" name="3" x="280" y="440"/>
+      <terminal_ref uuid="e9828344-a472-443e-ba86-048b6f277273" name="4" x="280" y="458"/>
+      <terminal_ref uuid="e37e1387-47fc-4d0c-bbca-c60298faad33" name="5" x="320" y="440"/>
+      <terminal_ref uuid="1ac507cc-497b-40d1-a025-5a4d9c106f02" name="6" x="320" y="458"/>
+    </element>
+    <element type="custom://text-to-schematic-muse/motor_3ph_6t" x="280" y="620" uuid="cebcb387-1f59-4fee-8d6f-d5b67678f615" label="M1 Y132S-4 5.5kW">
+      <terminal_ref uuid="be8b006e-d419-4147-828a-214e7533f1f3" name="U1" x="240" y="562"/>
+      <terminal_ref uuid="3e3cdea3-94ad-47ed-af6d-f42ff4625bb2" name="V1" x="280" y="562"/>
+      <terminal_ref uuid="dce16a6b-f4c9-4181-9b37-43b21b029419" name="W1" x="320" y="562"/>
+      <terminal_ref uuid="0f905720-56a0-4d44-811c-4d9ead702d50" name="U2" x="240" y="678"/>
+      <terminal_ref uuid="73a5d79b-15cf-42d5-9451-373867e75569" name="V2" x="280" y="678"/>
+      <terminal_ref uuid="3d321c07-e194-485f-8465-b8aac1269d2c" name="W2" x="320" y="678"/>
+    </element>
+    <element type="custom://text-to-schematic-muse/nc_pushbutton" x="1150" y="170" uuid="ad981a7c-2ef7-4916-ae95-d393fabf78ef" label="SB0 LAY3-01">
+      <terminal_ref uuid="dfb6df2a-e091-4fbd-8956-ccb4a034f17f" name="11" x="1150" y="144"/>
+      <terminal_ref uuid="6f9b621a-230f-417b-9dc7-363a5ff8e567" name="12" x="1150" y="196"/>
+    </element>
+    <element type="custom://text-to-schematic-muse/pushbutton" x="1150" y="270" uuid="38d11aa6-4129-4f1c-b470-af534bb79069" label="SB1 LAY3-10">
+      <terminal_ref uuid="9ddf2b87-bcec-44e4-a2b5-8a397ea99ee6" name="13" x="1150" y="244"/>
+      <terminal_ref uuid="a16cf3b7-56cb-482b-8502-484f88df7828" name="14" x="1150" y="296"/>
+    </element>
+    <element type="custom://text-to-schematic-muse/no_contact" x="1070" y="360" uuid="d7ca0bee-8ac8-481a-b6ad-5866c1e57aab" label="KM1 CJX2-1210">
+      <terminal_ref uuid="860578bf-49c1-42e9-b7f3-d8a8688d6026" name="13" x="1070" y="360"/>
+      <terminal_ref uuid="ab0f9068-e9d8-453d-ab61-3476ffb81f14" name="14" x="1070" y="412"/>
+    </element>
+    <element type="custom://text-to-schematic-muse/no_contact" x="1150" y="450" uuid="0a3d7f69-c704-45f4-83f7-2e7d4d01fc9e" label="KM1 CJX2-1210">
+      <terminal_ref uuid="407c1377-2e37-403f-a407-b82f9adb5d9a" name="13" x="1150" y="450"/>
+      <terminal_ref uuid="51dbd52e-ef32-473b-b479-f0ff154a1a10" name="14" x="1150" y="502"/>
+    </element>
+    <element type="custom://text-to-schematic-muse/nc_contact" x="1060" y="540" uuid="675af3fa-2fab-4efa-b11c-63bef98331a6" label="KM3 CJX2-1210">
+      <terminal_ref uuid="38d7fa21-140f-4e53-905b-0dfde8426c85" name="21" x="1060" y="540"/>
+      <terminal_ref uuid="87b18daa-c0b8-4219-86af-235406a90e7b" name="22" x="1060" y="592"/>
+    </element>
+    <element type="custom://text-to-schematic-muse/nc_contact" x="1240" y="540" uuid="ed993a15-a5c8-4a73-a236-63da90c60017" label="KM2 CJX2-1210">
+      <terminal_ref uuid="49536ee4-eeca-4fdc-a311-033ea76fd767" name="21" x="1240" y="540"/>
+      <terminal_ref uuid="f312109a-2dc3-4e3b-aae2-d8c3bffe131b" name="22" x="1240" y="592"/>
+    </element>
+    <element type="custom://text-to-schematic-muse/time_delay_nc" x="1100" y="630" uuid="8adbc1d3-ef86-43c8-9bc7-dfe749ed42af" label="KT1 JSZ3A">
+      <terminal_ref uuid="80cc7fcf-1424-43b2-bcaa-8578925e6447" name="15" x="1100" y="630"/>
+      <terminal_ref uuid="1659e25a-2d42-49a4-888d-b4a53f118720" name="16" x="1100" y="682"/>
+    </element>
+    <element type="custom://text-to-schematic-muse/time_delay_no" x="1200" y="630" uuid="af46140d-39fa-4d45-ba6e-569bc081d8bf" label="KT2 JSZ3A">
+      <terminal_ref uuid="decca598-b2ef-47c9-8ad6-09fa78e5abd7" name="15" x="1200" y="630"/>
+      <terminal_ref uuid="e38a48be-3a6e-490b-8d67-6405c021718d" name="18" x="1200" y="682"/>
+    </element>
+    <element type="custom://text-to-schematic-muse/coil" x="1150" y="750" uuid="741b796f-361e-4379-8e29-02c3ef253df9" label="KM1 CJX2-1210">
+      <terminal_ref uuid="7069dca0-9437-41b6-80c3-3116006540f1" name="A1" x="1136" y="718"/>
+      <terminal_ref uuid="45cc4b89-b602-4256-a711-ce2a9403a59f" name="A2" x="1136" y="782"/>
+    </element>
+    <element type="custom://text-to-schematic-muse/coil" x="1060" y="850" uuid="6a49a332-bead-4c3a-8bbe-cb06eacfe33b" label="KM2 CJX2-1210">
+      <terminal_ref uuid="64b81524-bd98-44c1-9726-f8f7feaaedff" name="A1" x="1046" y="818"/>
+      <terminal_ref uuid="2ca387f2-cb9c-4b7e-a7fe-e5085303c7f8" name="A2" x="1046" y="882"/>
+    </element>
+    <element type="custom://text-to-schematic-muse/coil" x="1240" y="850" uuid="306277fa-6a16-4872-a222-692aa6570c7e" label="KM3 CJX2-1210">
+      <terminal_ref uuid="e4b7891b-a99d-407f-9def-7aaeca2f107e" name="A1" x="1226" y="818"/>
+      <terminal_ref uuid="7a9e7fc2-9f7e-4aaa-a663-66cb3b20455d" name="A2" x="1226" y="882"/>
+    </element>
+    <element type="custom://text-to-schematic-muse/time_relay_coil" x="1000" y="750" uuid="ce1a174f-59ec-48b2-ae27-d6d4e0a37d31" label="KT1 JSZ3A">
+      <terminal_ref uuid="0c35a935-bf72-4518-afbc-f652ca203df1" name="A1" x="968" y="750"/>
+      <terminal_ref uuid="36ceb285-a071-4b75-9356-e89b06582e92" name="A2" x="1032" y="750"/>
+    </element>
+    <element type="custom://text-to-schematic-muse/time_relay_coil" x="1300" y="750" uuid="e75e5f2d-3628-4f06-a9fb-d239f11ffe1a" label="KT2 JSZ3A">
+      <terminal_ref uuid="bbf77765-b466-4a70-a2d0-462961fdfbf4" name="A1" x="1268" y="750"/>
+      <terminal_ref uuid="6a68174c-0df3-44b9-915c-eccd28099978" name="A2" x="1332" y="750"/>
+    </element>
+    <element type="custom://text-to-schematic-muse/nc_contact" x="1150" y="1030" uuid="85567ff9-59ff-403b-8982-30454f56410b" label="FR JR36-20">
+      <terminal_ref uuid="689a9908-3660-4c39-8b3a-351c0c5eb3d9" name="95" x="1150" y="1030"/>
+      <terminal_ref uuid="3a4ccf29-a63c-41ad-a213-07a5e6256e74" name="96" x="1150" y="1082"/>
+    </element>
+    <conductor freezeLabel="false">
+      <segment x1="200" y1="55" x2="240" y2="55"/>
+    </conductor>
+    <conductor freezeLabel="false">
+      <segment x1="240" y1="55" x2="350" y2="55"/>
+    </conductor>
+    <conductor freezeLabel="false" element2="f7a0accd-5ce4-4071-9729-121674e8af1e" terminal2="1697dcc9-cd12-4c29-9b80-d0ba0aba48de">
+      <segment x1="240" y1="55" x2="240" y2="150"/>
+    </conductor>
+    <conductor freezeLabel="false">
+      <segment x1="200" y1="80" x2="280" y2="80"/>
+    </conductor>
+    <conductor freezeLabel="false">
+      <segment x1="280" y1="80" x2="350" y2="80"/>
+    </conductor>
+    <conductor freezeLabel="false" element2="f7a0accd-5ce4-4071-9729-121674e8af1e" terminal2="98714b49-b31e-4d1a-b29c-cbba184b5f3b">
+      <segment x1="280" y1="80" x2="280" y2="150"/>
+    </conductor>
+    <conductor freezeLabel="false">
+      <segment x1="200" y1="105" x2="320" y2="105"/>
+    </conductor>
+    <conductor freezeLabel="false">
+      <segment x1="320" y1="105" x2="350" y2="105"/>
+    </conductor>
+    <conductor freezeLabel="false" element2="f7a0accd-5ce4-4071-9729-121674e8af1e" terminal2="deb1d992-9128-41c8-b43c-094b3532018c">
+      <segment x1="320" y1="105" x2="320" y2="150"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="f7a0accd-5ce4-4071-9729-121674e8af1e" terminal1="48fb8c1f-8fa2-4e27-bb5b-0cf4eeb00e79" element2="f6a9bd58-7cc7-4745-990b-83146571f721" terminal2="84555139-7c5c-4519-9aaf-9b72489a3ead">
+      <segment x1="240" y1="212" x2="240" y2="300"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="f7a0accd-5ce4-4071-9729-121674e8af1e" terminal1="60404a5e-6326-4241-80b2-9e64bae32835" element2="f6a9bd58-7cc7-4745-990b-83146571f721" terminal2="9cafae9d-a085-4874-ad9c-4f34c52b5db1">
+      <segment x1="280" y1="212" x2="280" y2="300"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="f7a0accd-5ce4-4071-9729-121674e8af1e" terminal1="0dfaa624-ec6b-4c38-b61b-1e7eedacf079" element2="f6a9bd58-7cc7-4745-990b-83146571f721" terminal2="31bd4e36-784b-4cd9-bbe8-c2c5e91e4cf8">
+      <segment x1="320" y1="212" x2="320" y2="300"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="f6a9bd58-7cc7-4745-990b-83146571f721" terminal1="09fe66de-e8d3-40c0-92ae-1f58ac2e4cc7" element2="4e8863d7-5866-4915-aa27-785d246464ee" terminal2="374432b7-b19c-4fd4-b0c1-6c623c2ab964">
+      <segment x1="240" y1="352" x2="240" y2="440"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="f6a9bd58-7cc7-4745-990b-83146571f721" terminal1="15a2c093-e749-4be2-a424-b9226ce50338" element2="4e8863d7-5866-4915-aa27-785d246464ee" terminal2="e3ecf5f4-490d-4b99-8978-379b2440a2b3">
+      <segment x1="280" y1="352" x2="280" y2="440"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="f6a9bd58-7cc7-4745-990b-83146571f721" terminal1="8afed876-5576-43fc-99cf-a6b8e508ed57" element2="4e8863d7-5866-4915-aa27-785d246464ee" terminal2="e37e1387-47fc-4d0c-bbca-c60298faad33">
+      <segment x1="320" y1="352" x2="320" y2="440"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="4e8863d7-5866-4915-aa27-785d246464ee" terminal1="081fc8bf-abaf-4f49-86e9-b3253eba380c" element2="cebcb387-1f59-4fee-8d6f-d5b67678f615" terminal2="be8b006e-d419-4147-828a-214e7533f1f3">
+      <segment x1="240" y1="458" x2="240" y2="562"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="4e8863d7-5866-4915-aa27-785d246464ee" terminal1="e9828344-a472-443e-ba86-048b6f277273" element2="cebcb387-1f59-4fee-8d6f-d5b67678f615" terminal2="3e3cdea3-94ad-47ed-af6d-f42ff4625bb2">
+      <segment x1="280" y1="458" x2="280" y2="562"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="4e8863d7-5866-4915-aa27-785d246464ee" terminal1="1ac507cc-497b-40d1-a025-5a4d9c106f02" element2="cebcb387-1f59-4fee-8d6f-d5b67678f615" terminal2="dce16a6b-f4c9-4181-9b37-43b21b029419">
+      <segment x1="320" y1="458" x2="320" y2="562"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="cebcb387-1f59-4fee-8d6f-d5b67678f615" terminal1="0f905720-56a0-4d44-811c-4d9ead702d50" element2="af2d220a-d5c5-4666-ad3c-996a3a1d6c33" terminal2="9a765da6-c794-4bd4-b850-9f0ee65be1db">
+      <segment x1="240" y1="678" x2="240" y2="700"/>
+      <segment x1="240" y1="700" x2="480" y2="700"/>
+      <segment x1="480" y1="700" x2="480" y2="352"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="cebcb387-1f59-4fee-8d6f-d5b67678f615" terminal1="73a5d79b-15cf-42d5-9451-373867e75569" element2="af2d220a-d5c5-4666-ad3c-996a3a1d6c33" terminal2="3f211410-437c-4833-a29a-a43d3637b1cd">
+      <segment x1="280" y1="678" x2="280" y2="720"/>
+      <segment x1="280" y1="720" x2="520" y2="720"/>
+      <segment x1="520" y1="720" x2="520" y2="352"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="cebcb387-1f59-4fee-8d6f-d5b67678f615" terminal1="3d321c07-e194-485f-8465-b8aac1269d2c" element2="af2d220a-d5c5-4666-ad3c-996a3a1d6c33" terminal2="a59c41d3-1b0e-46e1-af97-f868d1236a57">
+      <segment x1="320" y1="678" x2="320" y2="740"/>
+      <segment x1="320" y1="740" x2="560" y2="740"/>
+      <segment x1="560" y1="740" x2="560" y2="352"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="af2d220a-d5c5-4666-ad3c-996a3a1d6c33" terminal1="d67e429b-f464-4150-9aea-59c4e5001f01" element2="af2d220a-d5c5-4666-ad3c-996a3a1d6c33" terminal2="3b4476a2-a9a2-46b0-bcb5-10788b3eb68e">
+      <segment x1="480" y1="300" x2="480" y2="280"/>
+      <segment x1="480" y1="280" x2="520" y2="280"/>
+      <segment x1="520" y1="280" x2="520" y2="300"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="af2d220a-d5c5-4666-ad3c-996a3a1d6c33" terminal1="3b4476a2-a9a2-46b0-bcb5-10788b3eb68e" element2="af2d220a-d5c5-4666-ad3c-996a3a1d6c33" terminal2="353b4fea-c4ad-4e77-a61b-8774142ed5f7">
+      <segment x1="520" y1="300" x2="520" y2="280"/>
+      <segment x1="520" y1="280" x2="560" y2="280"/>
+      <segment x1="560" y1="280" x2="560" y2="300"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="4e8863d7-5866-4915-aa27-785d246464ee" terminal1="e9828344-a472-443e-ba86-048b6f277273" element2="377c5f8e-bb51-492b-a5a5-4177e07d5e6a" terminal2="83920476-1504-47b9-ad22-1f5047fd6f9c">
+      <segment x1="280" y1="458" x2="280" y2="500"/>
+      <segment x1="280" y1="500" x2="700" y2="500"/>
+      <segment x1="700" y1="500" x2="700" y2="300"/>
+      <segment x1="700" y1="300" x2="720" y2="300"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="377c5f8e-bb51-492b-a5a5-4177e07d5e6a" terminal1="e13e6129-899c-4074-8737-d8796b53ceba" element2="cebcb387-1f59-4fee-8d6f-d5b67678f615" terminal2="0f905720-56a0-4d44-811c-4d9ead702d50">
+      <segment x1="720" y1="352" x2="720" y2="600"/>
+      <segment x1="720" y1="600" x2="240" y2="600"/>
+      <segment x1="240" y1="600" x2="240" y2="678"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="4e8863d7-5866-4915-aa27-785d246464ee" terminal1="1ac507cc-497b-40d1-a025-5a4d9c106f02" element2="377c5f8e-bb51-492b-a5a5-4177e07d5e6a" terminal2="bddbaded-67ca-4cc8-a7f4-20e196f72315">
+      <segment x1="320" y1="458" x2="320" y2="520"/>
+      <segment x1="320" y1="520" x2="740" y2="520"/>
+      <segment x1="740" y1="520" x2="740" y2="300"/>
+      <segment x1="740" y1="300" x2="760" y2="300"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="377c5f8e-bb51-492b-a5a5-4177e07d5e6a" terminal1="2cdae141-27c7-4932-9b07-779ce580fbca" element2="cebcb387-1f59-4fee-8d6f-d5b67678f615" terminal2="73a5d79b-15cf-42d5-9451-373867e75569">
+      <segment x1="760" y1="352" x2="760" y2="620"/>
+      <segment x1="760" y1="620" x2="280" y2="620"/>
+      <segment x1="280" y1="620" x2="280" y2="678"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="4e8863d7-5866-4915-aa27-785d246464ee" terminal1="081fc8bf-abaf-4f49-86e9-b3253eba380c" element2="377c5f8e-bb51-492b-a5a5-4177e07d5e6a" terminal2="0c5d2c67-7571-4f8b-a564-4164ca549241">
+      <segment x1="240" y1="458" x2="240" y2="540"/>
+      <segment x1="240" y1="540" x2="780" y2="540"/>
+      <segment x1="780" y1="540" x2="780" y2="300"/>
+      <segment x1="780" y1="300" x2="800" y2="300"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="377c5f8e-bb51-492b-a5a5-4177e07d5e6a" terminal1="d17bd415-cf82-4d37-a731-0a1c11564cc9" element2="cebcb387-1f59-4fee-8d6f-d5b67678f615" terminal2="3d321c07-e194-485f-8465-b8aac1269d2c">
+      <segment x1="800" y1="352" x2="800" y2="640"/>
+      <segment x1="800" y1="640" x2="320" y2="640"/>
+      <segment x1="320" y1="640" x2="320" y2="678"/>
+    </conductor>
+    <conductor freezeLabel="false" element2="ad981a7c-2ef7-4916-ae95-d393fabf78ef" terminal2="dfb6df2a-e091-4fbd-8956-ccb4a034f17f">
+      <segment x1="1150" y1="120" x2="1150" y2="144"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="ad981a7c-2ef7-4916-ae95-d393fabf78ef" terminal1="6f9b621a-230f-417b-9dc7-363a5ff8e567">
+      <segment x1="1150" y1="196" x2="1150" y2="220"/>
+    </conductor>
+    <conductor freezeLabel="false" element2="38d11aa6-4129-4f1c-b470-af534bb79069" terminal2="9ddf2b87-bcec-44e4-a2b5-8a397ea99ee6">
+      <segment x1="1150" y1="220" x2="1150" y2="220"/>
+      <segment x1="1150" y1="220" x2="1150" y2="244"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="38d11aa6-4129-4f1c-b470-af534bb79069" terminal1="a16cf3b7-56cb-482b-8502-484f88df7828">
+      <segment x1="1150" y1="296" x2="1150" y2="320"/>
+    </conductor>
+    <conductor freezeLabel="false" element2="d7ca0bee-8ac8-481a-b6ad-5866c1e57aab" terminal2="860578bf-49c1-42e9-b7f3-d8a8688d6026">
+      <segment x1="1150" y1="220" x2="1070" y2="220"/>
+      <segment x1="1070" y1="220" x2="1070" y2="360"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="d7ca0bee-8ac8-481a-b6ad-5866c1e57aab" terminal1="ab0f9068-e9d8-453d-ab61-3476ffb81f14">
+      <segment x1="1070" y1="412" x2="1070" y2="412"/>
+      <segment x1="1070" y1="412" x2="1150" y2="412"/>
+      <segment x1="1150" y1="412" x2="1150" y2="320"/>
+    </conductor>
+    <conductor freezeLabel="false" element2="741b796f-361e-4379-8e29-02c3ef253df9" terminal2="7069dca0-9437-41b6-80c3-3116006540f1">
+      <segment x1="1150" y1="320" x2="1136" y2="320"/>
+      <segment x1="1136" y1="320" x2="1136" y2="718"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="741b796f-361e-4379-8e29-02c3ef253df9" terminal1="45cc4b89-b602-4256-a711-ce2a9403a59f">
+      <segment x1="1136" y1="782" x2="1170" y2="782"/>
+      <segment x1="1170" y1="782" x2="1170" y2="802"/>
+      <segment x1="1170" y1="802" x2="1170" y2="1000"/>
+    </conductor>
+    <conductor freezeLabel="false" element2="ce1a174f-59ec-48b2-ae27-d6d4e0a37d31" terminal2="0c35a935-bf72-4518-afbc-f652ca203df1">
+      <segment x1="1150" y1="320" x2="1000" y2="320"/>
+      <segment x1="1000" y1="320" x2="968" y2="320"/>
+      <segment x1="968" y1="320" x2="968" y2="750"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="ce1a174f-59ec-48b2-ae27-d6d4e0a37d31" terminal1="36ceb285-a071-4b75-9356-e89b06582e92">
+      <segment x1="1032" y1="750" x2="1070" y2="750"/>
+      <segment x1="1070" y1="750" x2="1070" y2="1000"/>
+      <segment x1="1070" y1="1000" x2="1060" y2="1000"/>
+    </conductor>
+    <conductor freezeLabel="false" element2="e75e5f2d-3628-4f06-a9fb-d239f11ffe1a" terminal2="bbf77765-b466-4a70-a2d0-462961fdfbf4">
+      <segment x1="1150" y1="320" x2="1300" y2="320"/>
+      <segment x1="1300" y1="320" x2="1268" y2="320"/>
+      <segment x1="1268" y1="320" x2="1268" y2="750"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="e75e5f2d-3628-4f06-a9fb-d239f11ffe1a" terminal1="6a68174c-0df3-44b9-915c-eccd28099978">
+      <segment x1="1332" y1="750" x2="1332" y2="1000"/>
+    </conductor>
+    <conductor freezeLabel="false">
+      <segment x1="1070" y1="1000" x2="1060" y2="1000"/>
+    </conductor>
+    <conductor freezeLabel="false">
+      <segment x1="1060" y1="1000" x2="1150" y2="1000"/>
+    </conductor>
+    <conductor freezeLabel="false">
+      <segment x1="1150" y1="1000" x2="1170" y2="1000"/>
+    </conductor>
+    <conductor freezeLabel="false">
+      <segment x1="1170" y1="1000" x2="1240" y2="1000"/>
+    </conductor>
+    <conductor freezeLabel="false">
+      <segment x1="1240" y1="1000" x2="1332" y2="1000"/>
+    </conductor>
+    <conductor freezeLabel="false" element2="85567ff9-59ff-403b-8982-30454f56410b" terminal2="689a9908-3660-4c39-8b3a-351c0c5eb3d9">
+      <segment x1="1150" y1="1000" x2="1150" y2="1030"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="85567ff9-59ff-403b-8982-30454f56410b" terminal1="3a4ccf29-a63c-41ad-a213-07a5e6256e74">
+      <segment x1="1150" y1="1082" x2="1150" y2="1090"/>
+    </conductor>
+    <conductor freezeLabel="false" element2="0a3d7f69-c704-45f4-83f7-2e7d4d01fc9e" terminal2="407c1377-2e37-403f-a407-b82f9adb5d9a">
+      <segment x1="1150" y1="320" x2="1150" y2="450"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="0a3d7f69-c704-45f4-83f7-2e7d4d01fc9e" terminal1="51dbd52e-ef32-473b-b479-f0ff154a1a10" element2="675af3fa-2fab-4efa-b11c-63bef98331a6" terminal2="38d7fa21-140f-4e53-905b-0dfde8426c85">
+      <segment x1="1150" y1="502" x2="1060" y2="502"/>
+      <segment x1="1060" y1="502" x2="1060" y2="540"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="675af3fa-2fab-4efa-b11c-63bef98331a6" terminal1="87b18daa-c0b8-4219-86af-235406a90e7b" element2="8adbc1d3-ef86-43c8-9bc7-dfe749ed42af" terminal2="80cc7fcf-1424-43b2-bcaa-8578925e6447">
+      <segment x1="1060" y1="592" x2="1060" y2="630"/>
+      <segment x1="1060" y1="630" x2="1100" y2="630"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="8adbc1d3-ef86-43c8-9bc7-dfe749ed42af" terminal1="1659e25a-2d42-49a4-888d-b4a53f118720" element2="6a49a332-bead-4c3a-8bbe-cb06eacfe33b" terminal2="64b81524-bd98-44c1-9726-f8f7feaaedff">
+      <segment x1="1100" y1="682" x2="1060" y2="682"/>
+      <segment x1="1060" y1="682" x2="1060" y2="818"/>
+      <segment x1="1060" y1="818" x2="1046" y2="818"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="6a49a332-bead-4c3a-8bbe-cb06eacfe33b" terminal1="2ca387f2-cb9c-4b7e-a7fe-e5085303c7f8">
+      <segment x1="1046" y1="882" x2="1060" y2="882"/>
+      <segment x1="1060" y1="882" x2="1060" y2="1000"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="0a3d7f69-c704-45f4-83f7-2e7d4d01fc9e" terminal1="51dbd52e-ef32-473b-b479-f0ff154a1a10" element2="ed993a15-a5c8-4a73-a236-63da90c60017" terminal2="49536ee4-eeca-4fdc-a311-033ea76fd767">
+      <segment x1="1150" y1="502" x2="1240" y2="502"/>
+      <segment x1="1240" y1="502" x2="1240" y2="540"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="ed993a15-a5c8-4a73-a236-63da90c60017" terminal1="f312109a-2dc3-4e3b-aae2-d8c3bffe131b" element2="af46140d-39fa-4d45-ba6e-569bc081d8bf" terminal2="decca598-b2ef-47c9-8ad6-09fa78e5abd7">
+      <segment x1="1240" y1="592" x2="1240" y2="630"/>
+      <segment x1="1240" y1="630" x2="1200" y2="630"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="af46140d-39fa-4d45-ba6e-569bc081d8bf" terminal1="e38a48be-3a6e-490b-8d67-6405c021718d" element2="306277fa-6a16-4872-a222-692aa6570c7e" terminal2="e4b7891b-a99d-407f-9def-7aaeca2f107e">
+      <segment x1="1200" y1="682" x2="1240" y2="682"/>
+      <segment x1="1240" y1="682" x2="1240" y2="818"/>
+      <segment x1="1240" y1="818" x2="1226" y2="818"/>
+    </conductor>
+    <conductor freezeLabel="false" element1="306277fa-6a16-4872-a222-692aa6570c7e" terminal1="7a9e7fc2-9f7e-4aaa-a663-66cb3b20455d">
+      <segment x1="1226" y1="882" x2="1240" y2="882"/>
+      <segment x1="1240" y1="882" x2="1240" y2="1000"/>
+    </conductor>
+  </diagram>
+</project>

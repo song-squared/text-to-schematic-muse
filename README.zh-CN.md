@@ -28,6 +28,9 @@ IEC 符号的元件清单与接线拓扑，逐条验证每个连接，再在 dra
 - **第二张验证图：正反转控制**——15 个实例、42 根接线，含自锁、
   电气+机械互锁、跨线圆弧自动绘制（`forward_reverse.py`、
   `verify_forward_reverse.py`）：
+- **第三张验证图：星—三角降压启动**——20 个实例、57 根接线，KT 时间继电器
+  5s 星形→0.5s 间隔→三角，电气+机械互锁，FR 95-96 串联保护
+  （`star_delta.py`、`verify_star_delta.py`、`verify_common.py` 公共几何验证库）：
 - **报表**——BOM、接线表、端子表由模型查表生成（`reports.py`）。
 - **发射器**——同一模型发射 `.dxf`（ezdxf，进 AutoCAD）与 `.qet`
  （QElectroTech 报表）。
@@ -35,6 +38,8 @@ IEC 符号的元件清单与接线拓扑，逐条验证每个连接，再在 dra
 ![直接启动电路 v8](docs/direct-start-v8.png)
 
 ![正反转控制](docs/forward-reverse.png)
+
+![星—三角降压启动](docs/star-delta.png)
 
 > **关于 PNG 预览图的说明**：本仓库有意不放 PNG 二进制文件——自动化推送
 > 传不上去二进制（GitHub connector 的限制），每次更新都手动上传太浪费时间。
@@ -50,10 +55,12 @@ IEC 符号的元件清单与接线拓扑，逐条验证每个连接，再在 dra
 git clone https://github.com/song-squared/text-to-schematic-muse
 cd text-to-schematic-muse
 
-python3 verify_terminals.py   # 48 符号 / 119 端子，全部检查通过
+python3 verify_terminals.py   # 49 符号 / 125 端子，全部检查通过
 python3 direct_start.py v8     # 由接线表生成 direct_start_v8.drawio
 python3 forward_reverse.py       # 生成 forward_reverse.drawio（正反转控制）
 python3 verify_forward_reverse.py  # 基于拓扑的验证，全部通过
+python3 star_delta.py            # 生成 star_delta.drawio（星—三角降压启动）
+python3 verify_star_delta.py     # 时序+几何验证，全部通过
 
 ./setup.sh check              # 缺 draw.io 就装上（VM 重置后跑这个恢复）
 xvfb-run -a /opt/drawio/drawio --no-sandbox --export \
