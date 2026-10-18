@@ -88,7 +88,11 @@ conversational:
 4. **Collect the result.** You get back:
    - a PNG preview (check it on your phone),
    - the editable `.drawio` file (open in draw.io, tweak anything),
-   - the BOM / wire list / terminal list.
+   - the BOM / wire list / terminal list,
+   - `.dxf` for AutoCAD and `.qet` for QElectroTech, if you need them
+     (`python3 dxf_emit.py forward_reverse`,
+     `python3 qet_emit.py forward_reverse` — pass any circuit module name,
+     no code changes needed).
 
 That's it — describe the circuit in one sentence, receive a verified diagram.
 
