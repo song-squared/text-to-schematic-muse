@@ -41,6 +41,11 @@ This is the fourth open-source project from
 
 ![forward/reverse starter](docs/forward-reverse.png)
 
+> **Note on the PNG previews**: the two PNGs above are exported locally with
+> draw.io (see the export command in Quickstart). If an image shows as broken
+> on GitHub, the binary simply hasn't been uploaded yet — run the export
+> command yourself and you'll get the identical file.
+
 > **Status**: v0.1 is a teaching preview — terminal data is cross-reviewed and
 > electrical correctness verified. It does not claim strict IEC/GB compliance
 > and is not intended for real installation wiring.
@@ -63,6 +68,27 @@ xvfb-run -a /opt/drawio/drawio --no-sandbox --export \
 
 Core scripts depend only on the Python standard library; draw.io is needed
 only for PNG export.
+
+## 👶 For beginners: use it without touching the command line
+
+You don't need to clone anything yourself. If you use
+[Muse](https://muse.ai) (this project's authoring agent), the whole flow is
+conversational:
+
+1. **"Take a look at the text-to-schematic-muse open-source project."**
+   Muse reads the repo — symbols, wiring model, examples, reports.
+2. **"Install it on the remote computer."**
+   Muse runs `./setup.sh check` on its own machine and verifies draw.io
+   export works.
+3. **"Draw me a motor forward/reverse starter circuit."**
+   Muse builds the connection list, validates every wire, and generates the
+   `.drawio` schematic plus the verification report.
+4. **Collect the result.** You get back:
+   - a PNG preview (check it on your phone),
+   - the editable `.drawio` file (open in draw.io, tweak anything),
+   - the BOM / wire list / terminal list.
+
+That's it — describe the circuit in one sentence, receive a verified diagram.
 
 ## 🗺️ Roadmap
 
