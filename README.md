@@ -29,12 +29,17 @@ This is the fourth open-source project from
 - **First end-to-end proof** — a direct-on-line motor starter (9 instances,
   22 connections), generated from its connection list and electrically
   verified:
+- **Second proof: forward/reverse motor control** — 15 instances, 42 wires,
+  with self-locking, electrical + mechanical interlocking, and automatic
+  cross-over arcs (`forward_reverse.py`, `verify_forward_reverse.py`):
 - **Reports** — BOM, wire list, and terminal list generated from the model
   by deterministic lookup (`reports.py`).
 - **Emitters** — the same model emits `.dxf` (ezdxf, for AutoCAD) and `.qet`
   (for QElectroTech reports).
 
 ![direct-on-line starter, v8](docs/direct-start-v8.png)
+
+![forward/reverse starter](docs/forward-reverse.png)
 
 > **Status**: v0.1 is a teaching preview — terminal data is cross-reviewed and
 > electrical correctness verified. It does not claim strict IEC/GB compliance
@@ -48,6 +53,8 @@ cd text-to-schematic-muse
 
 python3 verify_terminals.py   # 48 symbols / 119 terminals, all checks
 python3 direct_start.py v8     # generates direct_start_v8.drawio from the connection list
+python3 forward_reverse.py       # generates forward_reverse.drawio (forward/reverse control)
+python3 verify_forward_reverse.py  # topology-based verification, all checks
 
 ./setup.sh check              # installs draw.io if missing (re-run after a VM reset)
 xvfb-run -a /opt/drawio/drawio --no-sandbox --export \

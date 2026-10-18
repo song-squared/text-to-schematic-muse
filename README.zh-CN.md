@@ -25,11 +25,16 @@ IEC 符号的元件清单与接线拓扑，逐条验证每个连接，再在 dra
   `（器件，端子）→（器件，端子）`，绘制前先做合法性验证。
 - **首张端到端验证图**——直接启动电路（9 个实例、22 根接线），
   由接线表直接生成，电气正确性已验证：
+- **第二张验证图：正反转控制**——15 个实例、42 根接线，含自锁、
+  电气+机械互锁、跨线圆弧自动绘制（`forward_reverse.py`、
+  `verify_forward_reverse.py`）：
 - **报表**——BOM、接线表、端子表由模型查表生成（`reports.py`）。
 - **发射器**——同一模型发射 `.dxf`（ezdxf，进 AutoCAD）与 `.qet`
  （QElectroTech 报表）。
 
 ![直接启动电路 v8](docs/direct-start-v8.png)
+
+![正反转控制](docs/forward-reverse.png)
 
 > **状态说明**：v0.1 为教学预览版——端子数据经交叉审查，电气正确性已验证；
 > 不宣称严格 IEC/GB 合规，不可直接用于真实安装接线。
@@ -42,6 +47,8 @@ cd text-to-schematic-muse
 
 python3 verify_terminals.py   # 48 符号 / 119 端子，全部检查通过
 python3 direct_start.py v8     # 由接线表生成 direct_start_v8.drawio
+python3 forward_reverse.py       # 生成 forward_reverse.drawio（正反转控制）
+python3 verify_forward_reverse.py  # 基于拓扑的验证，全部通过
 
 ./setup.sh check              # 缺 draw.io 就装上（VM 重置后跑这个恢复）
 xvfb-run -a /opt/drawio/drawio --no-sandbox --export \
